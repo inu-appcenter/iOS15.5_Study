@@ -13,6 +13,19 @@
 		A6EFEF732ACC6CD800A837E5 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF722ACC6CD800A837E5 /* Assets.xcassets */; };
 		A6EFEF762ACC6CD800A837E5 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF742ACC6CD800A837E5 /* LaunchScreen.storyboard */; };
 		A6EFEF7F2ACC7AA700A837E5 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A6EFEF7E2ACC7AA700A837E5 /* SnapKit */; };
+		A6EFEF8B2ACD513800A837E5 /* spiderman2.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF812ACD513700A837E5 /* spiderman2.png */; };
+		A6EFEF8C2ACD513800A837E5 /* guardians.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF822ACD513700A837E5 /* guardians.png */; };
+		A6EFEF8D2ACD513800A837E5 /* ironman.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF832ACD513700A837E5 /* ironman.png */; };
+		A6EFEF8E2ACD513800A837E5 /* hulk.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF842ACD513700A837E5 /* hulk.png */; };
+		A6EFEF8F2ACD513800A837E5 /* doctorstrange.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF852ACD513700A837E5 /* doctorstrange.png */; };
+		A6EFEF902ACD513800A837E5 /* captain.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF862ACD513700A837E5 /* captain.png */; };
+		A6EFEF912ACD513800A837E5 /* thor.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF872ACD513700A837E5 /* thor.png */; };
+		A6EFEF922ACD513800A837E5 /* spiderman.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF882ACD513700A837E5 /* spiderman.png */; };
+		A6EFEF932ACD513800A837E5 /* batman.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF892ACD513800A837E5 /* batman.png */; };
+		A6EFEF942ACD513800A837E5 /* blackpanther.png in Resources */ = {isa = PBXBuildFile; fileRef = A6EFEF8A2ACD513800A837E5 /* blackpanther.png */; };
+		A6EFEF962ACD51D700A837E5 /* MovieTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EFEF952ACD51D700A837E5 /* MovieTableViewCell.swift */; };
+		A6EFEF982ACD740400A837E5 /* MovieInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EFEF972ACD740400A837E5 /* MovieInfo.swift */; };
+		A6EFEF9C2ACD7CF500A837E5 /* MovieDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6EFEF9B2ACD7CF500A837E5 /* MovieDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -23,6 +36,19 @@
 		A6EFEF722ACC6CD800A837E5 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		A6EFEF752ACC6CD800A837E5 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		A6EFEF772ACC6CD800A837E5 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A6EFEF812ACD513700A837E5 /* spiderman2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spiderman2.png; sourceTree = "<group>"; };
+		A6EFEF822ACD513700A837E5 /* guardians.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guardians.png; sourceTree = "<group>"; };
+		A6EFEF832ACD513700A837E5 /* ironman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ironman.png; sourceTree = "<group>"; };
+		A6EFEF842ACD513700A837E5 /* hulk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hulk.png; sourceTree = "<group>"; };
+		A6EFEF852ACD513700A837E5 /* doctorstrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doctorstrange.png; sourceTree = "<group>"; };
+		A6EFEF862ACD513700A837E5 /* captain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = captain.png; sourceTree = "<group>"; };
+		A6EFEF872ACD513700A837E5 /* thor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thor.png; sourceTree = "<group>"; };
+		A6EFEF882ACD513700A837E5 /* spiderman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spiderman.png; sourceTree = "<group>"; };
+		A6EFEF892ACD513800A837E5 /* batman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batman.png; sourceTree = "<group>"; };
+		A6EFEF8A2ACD513800A837E5 /* blackpanther.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackpanther.png; sourceTree = "<group>"; };
+		A6EFEF952ACD51D700A837E5 /* MovieTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieTableViewCell.swift; sourceTree = "<group>"; };
+		A6EFEF972ACD740400A837E5 /* MovieInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieInfo.swift; sourceTree = "<group>"; };
+		A6EFEF9B2ACD7CF500A837E5 /* MovieDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieDetailViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,14 +82,35 @@
 		A6EFEF682ACC6CD700A837E5 /* MovieListApp */ = {
 			isa = PBXGroup;
 			children = (
+				A6EFEF802ACD511200A837E5 /* images */,
 				A6EFEF692ACC6CD700A837E5 /* AppDelegate.swift */,
 				A6EFEF6B2ACC6CD700A837E5 /* SceneDelegate.swift */,
 				A6EFEF6D2ACC6CD700A837E5 /* MovieListViewController.swift */,
+				A6EFEF952ACD51D700A837E5 /* MovieTableViewCell.swift */,
+				A6EFEF972ACD740400A837E5 /* MovieInfo.swift */,
+				A6EFEF9B2ACD7CF500A837E5 /* MovieDetailViewController.swift */,
 				A6EFEF722ACC6CD800A837E5 /* Assets.xcassets */,
 				A6EFEF742ACC6CD800A837E5 /* LaunchScreen.storyboard */,
 				A6EFEF772ACC6CD800A837E5 /* Info.plist */,
 			);
 			path = MovieListApp;
+			sourceTree = "<group>";
+		};
+		A6EFEF802ACD511200A837E5 /* images */ = {
+			isa = PBXGroup;
+			children = (
+				A6EFEF892ACD513800A837E5 /* batman.png */,
+				A6EFEF8A2ACD513800A837E5 /* blackpanther.png */,
+				A6EFEF862ACD513700A837E5 /* captain.png */,
+				A6EFEF852ACD513700A837E5 /* doctorstrange.png */,
+				A6EFEF822ACD513700A837E5 /* guardians.png */,
+				A6EFEF842ACD513700A837E5 /* hulk.png */,
+				A6EFEF832ACD513700A837E5 /* ironman.png */,
+				A6EFEF882ACD513700A837E5 /* spiderman.png */,
+				A6EFEF812ACD513700A837E5 /* spiderman2.png */,
+				A6EFEF872ACD513700A837E5 /* thor.png */,
+			);
+			path = images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -131,7 +178,17 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6EFEF762ACC6CD800A837E5 /* LaunchScreen.storyboard in Resources */,
+				A6EFEF8F2ACD513800A837E5 /* doctorstrange.png in Resources */,
+				A6EFEF912ACD513800A837E5 /* thor.png in Resources */,
+				A6EFEF922ACD513800A837E5 /* spiderman.png in Resources */,
+				A6EFEF932ACD513800A837E5 /* batman.png in Resources */,
 				A6EFEF732ACC6CD800A837E5 /* Assets.xcassets in Resources */,
+				A6EFEF942ACD513800A837E5 /* blackpanther.png in Resources */,
+				A6EFEF8D2ACD513800A837E5 /* ironman.png in Resources */,
+				A6EFEF8C2ACD513800A837E5 /* guardians.png in Resources */,
+				A6EFEF8B2ACD513800A837E5 /* spiderman2.png in Resources */,
+				A6EFEF902ACD513800A837E5 /* captain.png in Resources */,
+				A6EFEF8E2ACD513800A837E5 /* hulk.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -143,7 +200,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6EFEF6E2ACC6CD700A837E5 /* MovieListViewController.swift in Sources */,
+				A6EFEF982ACD740400A837E5 /* MovieInfo.swift in Sources */,
 				A6EFEF6A2ACC6CD700A837E5 /* AppDelegate.swift in Sources */,
+				A6EFEF962ACD51D700A837E5 /* MovieTableViewCell.swift in Sources */,
+				A6EFEF9C2ACD7CF500A837E5 /* MovieDetailViewController.swift in Sources */,
 				A6EFEF6C2ACC6CD700A837E5 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
