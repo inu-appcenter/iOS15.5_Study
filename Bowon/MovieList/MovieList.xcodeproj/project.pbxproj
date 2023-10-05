@@ -7,27 +7,37 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		29612DF32ACE80F400BD04AA /* batman.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DE92ACE80F400BD04AA /* batman.png */; };
+		29612DF42ACE80F400BD04AA /* blackpanther.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DEA2ACE80F400BD04AA /* blackpanther.png */; };
+		29612DF52ACE80F400BD04AA /* spiderman.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DEB2ACE80F400BD04AA /* spiderman.png */; };
+		29612DF62ACE80F400BD04AA /* ironman.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DEC2ACE80F400BD04AA /* ironman.png */; };
+		29612DF72ACE80F400BD04AA /* captain.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DED2ACE80F400BD04AA /* captain.png */; };
+		29612DF82ACE80F400BD04AA /* doctorstrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DEE2ACE80F400BD04AA /* doctorstrange.png */; };
+		29612DF92ACE80F400BD04AA /* thor.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DEF2ACE80F400BD04AA /* thor.png */; };
+		29612DFA2ACE80F400BD04AA /* guardians.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DF02ACE80F400BD04AA /* guardians.png */; };
+		29612DFB2ACE80F400BD04AA /* hulk.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DF12ACE80F400BD04AA /* hulk.png */; };
+		29612DFC2ACE80F400BD04AA /* spiderman2.png in Resources */ = {isa = PBXBuildFile; fileRef = 29612DF22ACE80F400BD04AA /* spiderman2.png */; };
 		2962A6B92ACE4BBE00E47BF7 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2962A6B82ACE4BBE00E47BF7 /* AppDelegate.swift */; };
 		2962A6BB2ACE4BBE00E47BF7 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2962A6BA2ACE4BBE00E47BF7 /* SceneDelegate.swift */; };
 		2962A6BD2ACE4BBE00E47BF7 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2962A6BC2ACE4BBE00E47BF7 /* ViewController.swift */; };
 		2962A6C22ACE4BBF00E47BF7 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6C12ACE4BBF00E47BF7 /* Assets.xcassets */; };
 		2962A6C52ACE4BBF00E47BF7 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6C32ACE4BBF00E47BF7 /* LaunchScreen.storyboard */; };
-		2962A6D62ACE4C0200E47BF7 /* batman.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6CC2ACE4C0200E47BF7 /* batman.png */; };
-		2962A6D72ACE4C0200E47BF7 /* ironman.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6CD2ACE4C0200E47BF7 /* ironman.png */; };
-		2962A6D82ACE4C0200E47BF7 /* captain.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6CE2ACE4C0200E47BF7 /* captain.png */; };
-		2962A6D92ACE4C0200E47BF7 /* spiderman2.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6CF2ACE4C0200E47BF7 /* spiderman2.png */; };
-		2962A6DA2ACE4C0200E47BF7 /* blackpanther.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6D02ACE4C0200E47BF7 /* blackpanther.png */; };
-		2962A6DB2ACE4C0200E47BF7 /* guardians.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6D12ACE4C0200E47BF7 /* guardians.png */; };
-		2962A6DC2ACE4C0200E47BF7 /* hulk.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6D22ACE4C0200E47BF7 /* hulk.png */; };
-		2962A6DD2ACE4C0200E47BF7 /* spiderman.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6D32ACE4C0200E47BF7 /* spiderman.png */; };
-		2962A6DE2ACE4C0200E47BF7 /* thor.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6D42ACE4C0200E47BF7 /* thor.png */; };
-		2962A6DF2ACE4C0200E47BF7 /* doctorstrange.png in Resources */ = {isa = PBXBuildFile; fileRef = 2962A6D52ACE4C0200E47BF7 /* doctorstrange.png */; };
 		2962A6E12ACE4C2700E47BF7 /* ListViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2962A6E02ACE4C2700E47BF7 /* ListViewCell.swift */; };
 		2962A6E32ACE4C3300E47BF7 /* DataList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2962A6E22ACE4C3300E47BF7 /* DataList.swift */; };
 		2962A6E52ACE4C4600E47BF7 /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2962A6E42ACE4C4600E47BF7 /* DetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		29612DE92ACE80F400BD04AA /* batman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = batman.png; sourceTree = "<group>"; };
+		29612DEA2ACE80F400BD04AA /* blackpanther.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = blackpanther.png; sourceTree = "<group>"; };
+		29612DEB2ACE80F400BD04AA /* spiderman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spiderman.png; sourceTree = "<group>"; };
+		29612DEC2ACE80F400BD04AA /* ironman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ironman.png; sourceTree = "<group>"; };
+		29612DED2ACE80F400BD04AA /* captain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = captain.png; sourceTree = "<group>"; };
+		29612DEE2ACE80F400BD04AA /* doctorstrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = doctorstrange.png; sourceTree = "<group>"; };
+		29612DEF2ACE80F400BD04AA /* thor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = thor.png; sourceTree = "<group>"; };
+		29612DF02ACE80F400BD04AA /* guardians.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = guardians.png; sourceTree = "<group>"; };
+		29612DF12ACE80F400BD04AA /* hulk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = hulk.png; sourceTree = "<group>"; };
+		29612DF22ACE80F400BD04AA /* spiderman2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = spiderman2.png; sourceTree = "<group>"; };
 		2962A6B52ACE4BBE00E47BF7 /* MovieList.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovieList.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2962A6B82ACE4BBE00E47BF7 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2962A6BA2ACE4BBE00E47BF7 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -35,16 +45,6 @@
 		2962A6C12ACE4BBF00E47BF7 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		2962A6C42ACE4BBF00E47BF7 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		2962A6C62ACE4BBF00E47BF7 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		2962A6CC2ACE4C0200E47BF7 /* batman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = batman.png; path = ../../../../Downloads/Movie_Images/batman.png; sourceTree = "<group>"; };
-		2962A6CD2ACE4C0200E47BF7 /* ironman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = ironman.png; path = ../../../../Downloads/Movie_Images/ironman.png; sourceTree = "<group>"; };
-		2962A6CE2ACE4C0200E47BF7 /* captain.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = captain.png; path = ../../../../Downloads/Movie_Images/captain.png; sourceTree = "<group>"; };
-		2962A6CF2ACE4C0200E47BF7 /* spiderman2.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spiderman2.png; path = ../../../../Downloads/Movie_Images/spiderman2.png; sourceTree = "<group>"; };
-		2962A6D02ACE4C0200E47BF7 /* blackpanther.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = blackpanther.png; path = ../../../../Downloads/Movie_Images/blackpanther.png; sourceTree = "<group>"; };
-		2962A6D12ACE4C0200E47BF7 /* guardians.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = guardians.png; path = ../../../../Downloads/Movie_Images/guardians.png; sourceTree = "<group>"; };
-		2962A6D22ACE4C0200E47BF7 /* hulk.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = hulk.png; path = ../../../../Downloads/Movie_Images/hulk.png; sourceTree = "<group>"; };
-		2962A6D32ACE4C0200E47BF7 /* spiderman.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = spiderman.png; path = ../../../../Downloads/Movie_Images/spiderman.png; sourceTree = "<group>"; };
-		2962A6D42ACE4C0200E47BF7 /* thor.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = thor.png; path = ../../../../Downloads/Movie_Images/thor.png; sourceTree = "<group>"; };
-		2962A6D52ACE4C0200E47BF7 /* doctorstrange.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = doctorstrange.png; path = ../../../../Downloads/Movie_Images/doctorstrange.png; sourceTree = "<group>"; };
 		2962A6E02ACE4C2700E47BF7 /* ListViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ListViewCell.swift; sourceTree = "<group>"; };
 		2962A6E22ACE4C3300E47BF7 /* DataList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataList.swift; sourceTree = "<group>"; };
 		2962A6E42ACE4C4600E47BF7 /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
@@ -61,6 +61,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		29612DE82ACE80F400BD04AA /* Movie_Images */ = {
+			isa = PBXGroup;
+			children = (
+				29612DE92ACE80F400BD04AA /* batman.png */,
+				29612DEA2ACE80F400BD04AA /* blackpanther.png */,
+				29612DEB2ACE80F400BD04AA /* spiderman.png */,
+				29612DEC2ACE80F400BD04AA /* ironman.png */,
+				29612DED2ACE80F400BD04AA /* captain.png */,
+				29612DEE2ACE80F400BD04AA /* doctorstrange.png */,
+				29612DEF2ACE80F400BD04AA /* thor.png */,
+				29612DF02ACE80F400BD04AA /* guardians.png */,
+				29612DF12ACE80F400BD04AA /* hulk.png */,
+				29612DF22ACE80F400BD04AA /* spiderman2.png */,
+			);
+			name = Movie_Images;
+			path = ../../../../../Downloads/Movie_Images;
+			sourceTree = "<group>";
+		};
 		2962A6AC2ACE4BBE00E47BF7 = {
 			isa = PBXGroup;
 			children = (
@@ -80,6 +98,7 @@
 		2962A6B72ACE4BBE00E47BF7 /* MovieList */ = {
 			isa = PBXGroup;
 			children = (
+				29612DE82ACE80F400BD04AA /* Movie_Images */,
 				2962A6B82ACE4BBE00E47BF7 /* AppDelegate.swift */,
 				2962A6E02ACE4C2700E47BF7 /* ListViewCell.swift */,
 				2962A6E22ACE4C3300E47BF7 /* DataList.swift */,
@@ -89,16 +108,6 @@
 				2962A6C12ACE4BBF00E47BF7 /* Assets.xcassets */,
 				2962A6C32ACE4BBF00E47BF7 /* LaunchScreen.storyboard */,
 				2962A6C62ACE4BBF00E47BF7 /* Info.plist */,
-				2962A6CC2ACE4C0200E47BF7 /* batman.png */,
-				2962A6D02ACE4C0200E47BF7 /* blackpanther.png */,
-				2962A6CE2ACE4C0200E47BF7 /* captain.png */,
-				2962A6D52ACE4C0200E47BF7 /* doctorstrange.png */,
-				2962A6D12ACE4C0200E47BF7 /* guardians.png */,
-				2962A6D22ACE4C0200E47BF7 /* hulk.png */,
-				2962A6CD2ACE4C0200E47BF7 /* ironman.png */,
-				2962A6D32ACE4C0200E47BF7 /* spiderman.png */,
-				2962A6CF2ACE4C0200E47BF7 /* spiderman2.png */,
-				2962A6D42ACE4C0200E47BF7 /* thor.png */,
 			);
 			path = MovieList;
 			sourceTree = "<group>";
@@ -161,18 +170,18 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2962A6DE2ACE4C0200E47BF7 /* thor.png in Resources */,
-				2962A6D82ACE4C0200E47BF7 /* captain.png in Resources */,
+				29612DF62ACE80F400BD04AA /* ironman.png in Resources */,
 				2962A6C52ACE4BBF00E47BF7 /* LaunchScreen.storyboard in Resources */,
-				2962A6DC2ACE4C0200E47BF7 /* hulk.png in Resources */,
-				2962A6DD2ACE4C0200E47BF7 /* spiderman.png in Resources */,
-				2962A6D92ACE4C0200E47BF7 /* spiderman2.png in Resources */,
+				29612DFC2ACE80F400BD04AA /* spiderman2.png in Resources */,
+				29612DF92ACE80F400BD04AA /* thor.png in Resources */,
 				2962A6C22ACE4BBF00E47BF7 /* Assets.xcassets in Resources */,
-				2962A6DF2ACE4C0200E47BF7 /* doctorstrange.png in Resources */,
-				2962A6D72ACE4C0200E47BF7 /* ironman.png in Resources */,
-				2962A6DA2ACE4C0200E47BF7 /* blackpanther.png in Resources */,
-				2962A6DB2ACE4C0200E47BF7 /* guardians.png in Resources */,
-				2962A6D62ACE4C0200E47BF7 /* batman.png in Resources */,
+				29612DFA2ACE80F400BD04AA /* guardians.png in Resources */,
+				29612DF82ACE80F400BD04AA /* doctorstrange.png in Resources */,
+				29612DFB2ACE80F400BD04AA /* hulk.png in Resources */,
+				29612DF42ACE80F400BD04AA /* blackpanther.png in Resources */,
+				29612DF72ACE80F400BD04AA /* captain.png in Resources */,
+				29612DF52ACE80F400BD04AA /* spiderman.png in Resources */,
+				29612DF32ACE80F400BD04AA /* batman.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
