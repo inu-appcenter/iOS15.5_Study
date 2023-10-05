@@ -71,8 +71,8 @@ class ListViewCell: UITableViewCell{
 
     }
     
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+//    override func awakeFromNib() {
+//        super.awakeFromNib()
+//    }
 }
 
