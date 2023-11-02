@@ -3,7 +3,6 @@
 //  MemberList
 //
 //  Created by Bowon Han on 10/8/23.
-//
 
 import UIKit
 
@@ -217,30 +216,3 @@ class UpdateMemberViewController:UIViewController{
         ])
     }
 }
-
-
-
-
-
-// MARK: - for canvas
-//import SwiftUI
-//
-//struct UpdateMemberViewControllerRepresentable: UIViewControllerRepresentable{
-//    typealias UIViewControllerType = UpdateMemberViewController
-//    
-//    func makeUIViewController(context: Context) -> UpdateMemberViewController {
-//        return UpdateMemberViewController(member: <#Member#>)
-//    }
-//    
-//    func updateUIViewController(_ uiViewController: UpdateMemberViewController, context: Context) {
-//        
-//    }
-//}
-//
-//@available(iOS 13.0.0, *)
-//struct UpdateMemberViewPreview: PreviewProvider{
-//    static var previews: some View{
-//        UpdateMemberViewControllerRepresentable()
-//    }
-//}
-

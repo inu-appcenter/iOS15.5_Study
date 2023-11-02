@@ -8,7 +8,6 @@
 import UIKit
 
 class AddMemberViewController:UIViewController{
-    
     private let AddMemberNumberLabel: UILabel = {
         let label = UILabel()
         label.text = "멤버번호"
@@ -214,26 +213,4 @@ class AddMemberViewController:UIViewController{
         ])
     }
 }
-
-// MARK: - for canvas
-//import SwiftUI
-//
-//struct AddMemberViewControllerRepresentable: UIViewControllerRepresentable{
-//    typealias UIViewControllerType = AddMemberViewController
-//    
-//    func makeUIViewController(context: Context) -> AddMemberViewController {
-//        return AddMemberViewController()
-//    }
-//    
-//    func updateUIViewController(_ uiViewController: AddMemberViewController, context: Context) {
-//        
-//    }
-//}
-//
-//@available(iOS 13.0.0, *)
-//struct AddMemberViewPreview: PreviewProvider{
-//    static var previews: some View{
-//        AddMemberViewControllerRepresentable()
-//    }
-//}
 

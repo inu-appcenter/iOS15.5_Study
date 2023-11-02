@@ -24,6 +24,7 @@ class MemberListViewController:UIViewController{
         let tableView = UITableView()
         tableView.dataSource = self
         tableView.delegate = self
+        myTableView.register(MemberListViewCell.self, forCellReuseIdentifier: MemberListViewCell.identifier)
         return tableView
     }()
     
@@ -31,10 +32,6 @@ class MemberListViewController:UIViewController{
         super.viewDidLoad()
         view.backgroundColor = .white
         setConstraint()
-    }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
         setNavigationButton()
         myTableView.reloadData()
     }
@@ -42,8 +39,6 @@ class MemberListViewController:UIViewController{
 // MARK: - constraint
     private func setConstraint(){
         let safeArea = view.safeAreaLayoutGuide
-
-        myTableView.register(MemberListViewCell.self, forCellReuseIdentifier: MemberListViewCell.identifier)
 
         self.view.addSubview(myTableView)
         
@@ -76,9 +71,15 @@ class MemberListViewController:UIViewController{
 // MARK: - extension UITableViewDelegate,UITableViewDataSource
 extension MemberListViewController: UITableViewDelegate, UITableViewDataSource, MemberDetailDelegate{
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: MemberListViewCell.identifier, for: indexPath) as? MemberListViewCell else { return UITableViewCell() }
+        guard let cell = tableView.dequeueReusableCell(
+            withIdentifier: MemberListViewCell.identifier,
+            for: indexPath
+            ) as? MemberListViewCell else {
+                return UITableViewCell()
+            }
         
-        guard indexPath.row < memberList.count else { return UITableViewCell() }
+        // indexPath.row 가 memberList배열의 유효한 인덱스 인지 확인하는것 인덱스 경로가 배열 범위를 벗어나는 경우 방지
+        //guard indexPath.row < memberList.count else { return UITableViewCell() }
 
         let data = memberList[(indexPath as NSIndexPath).row]
         
@@ -103,6 +104,8 @@ extension MemberListViewController: UITableViewDelegate, UITableViewDataSource, 
 //
 //        }
     }
+    
+    //순환참조
     
     func tableView(_ tableView: UITableView, titleForDeleteConfirmationButtonForRowAt indexPath: IndexPath) -> String? {
         return "삭제"
@@ -143,30 +146,3 @@ extension MemberListViewController: UITableViewDelegate, UITableViewDataSource, 
         }
     }
 }
-
-
-
-
-
-// MARK: - for canvas
-//import SwiftUI
-//
-//struct ViewControllerRepresentable: UIViewControllerRepresentable{
-//    typealias UIViewControllerType = MemberListViewController
-//    
-//    func makeUIViewController(context: Context) -> MemberListViewController {
-//        return MemberListViewController()
-//    }
-//    
-//    func updateUIViewController(_ uiViewController: MemberListViewController, context: Context) {
-//        
-//    }
-//}
-//
-//@available(iOS 13.0.0, *)
-//struct ViewPreview: PreviewProvider{
-//    static var previews: some View{
-//        ViewControllerRepresentable()
-//    }
-//}
-//
