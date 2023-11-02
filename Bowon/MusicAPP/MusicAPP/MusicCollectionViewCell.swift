@@ -35,8 +35,6 @@ final class MusicCollectionViewCell : UICollectionViewCell {
     func configure(with music: Music) {
         musicImageView.image = UIImage(named: music.imageName)
     }
-
-        
 }
 
 // MARK: - UICollectionViewCell extension

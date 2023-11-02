@@ -14,8 +14,8 @@ class SearchMusicViewController : UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        view.backgroundColor = .white
         setupLayout()
+        configure()
     }
     
     private lazy var collectionView: UICollectionView = {
@@ -26,11 +26,6 @@ class SearchMusicViewController : UIViewController {
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         collectionView.backgroundColor = .gray
         
-        collectionView.delegate = self
-        collectionView.dataSource = self
-        
-        collectionView.register(MusicCollectionViewCell.self, forCellWithReuseIdentifier: "MusicCollectionViewCell")
-
         return collectionView
     }()
     
@@ -40,6 +35,13 @@ class SearchMusicViewController : UIViewController {
         
         return searchBar
     }()
+    
+    func configure(){
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        
+        collectionView.register(MusicCollectionViewCell.self, forCellWithReuseIdentifier: MusicCollectionViewCell.identifier)
+    }
     
     func setupLayout() {
         view.addSubview(collectionView)
