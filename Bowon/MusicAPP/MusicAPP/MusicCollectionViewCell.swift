@@ -31,10 +31,12 @@ final class MusicCollectionViewCell : UICollectionViewCell {
             $0.edges.equalToSuperview()
         }
     }
-        
-    func setImage(data: Music) {
-        
+    
+    func configure(with music: Music) {
+        musicImageView.image = UIImage(named: music.imageName)
     }
+
+        
 }
 
 // MARK: - UICollectionViewCell extension

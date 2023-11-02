@@ -60,8 +60,13 @@ class SearchMusicViewController : UIViewController {
         guard let url = URL(string: "https://itunes.apple.com/search?media=music&term=\(id)") else { return }
         
         Task {
-            musicInfo = try await self.fetchMusicInfo(url: url)
-            collectionView.reloadData()
+            do {
+                let musicInfo = try await self.fetchMusicInfo(url: url)
+                self.musicInfo = musicInfo
+                self.collectionView.reloadData()
+            } catch {
+                print("Error: \(error)")
+            }
         }
     }
     
@@ -83,7 +88,8 @@ extension SearchMusicViewController : UICollectionViewDataSource,UICollectionVie
             return UICollectionViewCell()
         }
     
-        cell.backgroundColor = .lightGray
+        let music = musicInfo[indexPath.item]
+        cell.configure(with: music)
         
         return cell
     }
