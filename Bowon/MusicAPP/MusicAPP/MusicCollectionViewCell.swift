@@ -12,8 +12,6 @@ final class MusicCollectionViewCell : UICollectionViewCell {
     private let musicImageView : UIImageView = {
         let imageView = UIImageView()
 
-        //imageView.backgroundColor = .tertiaryLabel
-
         return imageView
     }()
     

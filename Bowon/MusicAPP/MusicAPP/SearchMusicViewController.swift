@@ -56,7 +56,6 @@ class SearchMusicViewController : UIViewController {
     }
     
 // MARK: - network
-    // 네트워크에서 음악 정보를 가져오는 함수
     func requestURL(for id: String) {
         guard let url = URL(string: "https://itunes.apple.com/search?media=music&term=\(id)") else { return }
         
