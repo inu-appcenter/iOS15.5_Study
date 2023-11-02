@@ -5,6 +5,7 @@
 //  Created by 이대현 on 2023/10/04.
 //
 
+import SnapKit
 import UIKit
 
 class MovieTableViewCell: UITableViewCell {
