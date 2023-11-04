@@ -8,6 +8,11 @@
 import UIKit
 import SnapKit
 
+enum FetchError: Error {
+    case invalidStatus
+    case jsonDecodeError
+}
+
 class SearchMusicViewController : UIViewController {
     var musicInfo : [Music] = []
     
@@ -16,6 +21,7 @@ class SearchMusicViewController : UIViewController {
         
         setupLayout()
         configure()
+        requestURL()
     }
     
     private lazy var collectionView: UICollectionView = {
@@ -24,7 +30,7 @@ class SearchMusicViewController : UIViewController {
         layout.minimumLineSpacing = 1.0
                
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
-        collectionView.backgroundColor = .gray
+        collectionView.register(MusicCollectionViewCell.self, forCellWithReuseIdentifier: MusicCollectionViewCell.identifier)
         
         return collectionView
     }()
@@ -39,8 +45,8 @@ class SearchMusicViewController : UIViewController {
     func configure(){
         collectionView.delegate = self
         collectionView.dataSource = self
-        
-        collectionView.register(MusicCollectionViewCell.self, forCellWithReuseIdentifier: MusicCollectionViewCell.identifier)
+        searchBar.delegate = self
+
     }
     
     func setupLayout() {
@@ -58,40 +64,52 @@ class SearchMusicViewController : UIViewController {
     }
     
 // MARK: - network
-    func requestURL(for id: String) {
+    private func requestURL(_ filter: String? = nil) {
+        let id: String
+        if let filter = filter {
+            id = filter
+        } else {
+            id = "new jeans" // default value
+        }
+        
         guard let url = URL(string: "https://itunes.apple.com/search?media=music&term=\(id)") else { return }
         
         Task {
             do {
-                let musicInfo = try await self.fetchMusicInfo(url: url)
-                self.musicInfo = musicInfo
-                self.collectionView.reloadData()
+                let musicInformation = try await self.fetchMusicInfo(url: url)
+                self.musicInfo = musicInformation
+                DispatchQueue.main.async{
+                    self.collectionView.reloadData()
+                }
             } catch {
                 print("Error: \(error)")
             }
         }
     }
     
-    func fetchMusicInfo(url: URL) async throws -> [Music] {
-        let (data, _ ) = try await URLSession.shared.data(from: url)
-        let musicInfo = try JSONDecoder().decode(MusicService.self, from: data)
-        return musicInfo.results
+    private func fetchMusicInfo(url: URL) async throws -> [Music] {
+        let (data, response) = try await URLSession.shared.data(from: url)
+        
+        guard let httpResponse = response as? HTTPURLResponse,
+            httpResponse.statusCode == 200 else {
+                throw FetchError.invalidStatus
+            }
+        
+        let musicInformation = try JSONDecoder().decode(MusicService.self, from: data)
+        return musicInformation.results
     }
 }
 
 // MARK: - extension
 extension SearchMusicViewController : UICollectionViewDataSource,UICollectionViewDelegate {
-    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath
-        ) -> UICollectionViewCell {
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(
             withReuseIdentifier: MusicCollectionViewCell.identifier,
             for: indexPath
         ) as? MusicCollectionViewCell else {
             return UICollectionViewCell()
         }
-    
-        let music = musicInfo[indexPath.item]
-        cell.configure(with: music)
+        cell.requestImageURL(data: musicInfo[indexPath.row])
         
         return cell
     }
@@ -110,6 +128,6 @@ extension SearchMusicViewController : UICollectionViewDelegateFlowLayout {
 
 extension SearchMusicViewController : UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        requestURL(for: searchText)
+        requestURL(searchText)
     }
 }

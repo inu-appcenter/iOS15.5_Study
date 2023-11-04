@@ -16,7 +16,7 @@ struct Music: Codable {
     let imageName : String
     
     enum CodingKeys: String, CodingKey {
-        case imageName = "artworkUrl60"
+        case imageName = "artworkUrl100"
     }
 }
 

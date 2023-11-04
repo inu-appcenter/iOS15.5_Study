@@ -9,9 +9,9 @@ import UIKit
 import SnapKit
 
 final class MusicCollectionViewCell : UICollectionViewCell {
-    private let musicImageView : UIImageView = {
+    var musicImageView : UIImageView = {
         let imageView = UIImageView()
-
+        
         return imageView
     }()
     
@@ -32,8 +32,17 @@ final class MusicCollectionViewCell : UICollectionViewCell {
         }
     }
     
-    func configure(with music: Music) {
-        musicImageView.image = UIImage(named: music.imageName)
+    func requestImageURL(data: Music) {
+        guard let url = URL(string: data.imageName) else { return }
+        
+        Task {
+            guard
+                let data = try? Data(contentsOf: url)
+            else { return }
+            DispatchQueue.main.async{
+                self.musicImageView.image = UIImage(data: data)
+            }
+        }
     }
 }
 
@@ -43,4 +52,3 @@ extension UICollectionViewCell {
         return String(describing: self)
     }
 }
-
