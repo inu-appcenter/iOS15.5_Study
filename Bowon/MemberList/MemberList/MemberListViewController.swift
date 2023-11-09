@@ -22,9 +22,7 @@ class MemberListViewController:UIViewController{
     
     private lazy var myTableView:UITableView = {
         let tableView = UITableView()
-        tableView.dataSource = self
-        tableView.delegate = self
-        myTableView.register(MemberListViewCell.self, forCellReuseIdentifier: MemberListViewCell.identifier)
+        
         return tableView
     }()
     
@@ -34,6 +32,7 @@ class MemberListViewController:UIViewController{
         setConstraint()
         setNavigationButton()
         myTableView.reloadData()
+        configure()
     }
     
 // MARK: - constraint
@@ -44,8 +43,8 @@ class MemberListViewController:UIViewController{
         
         myTableView.translatesAutoresizingMaskIntoConstraints = false
                 
-        myTableView.rowHeight = UITableView.automaticDimension
-        myTableView.estimatedRowHeight = UITableView.automaticDimension
+//        myTableView.rowHeight = UITableView.automaticDimension
+//        myTableView.estimatedRowHeight = UITableView.automaticDimension
 
         NSLayoutConstraint.activate([
             myTableView.topAnchor.constraint(equalTo: safeArea.topAnchor),
@@ -54,6 +53,13 @@ class MemberListViewController:UIViewController{
             myTableView.trailingAnchor.constraint(equalTo: safeArea.trailingAnchor)
         ])
     }
+    
+    private func configure() {
+        myTableView.dataSource = self
+        myTableView.delegate = self
+        myTableView.register(MemberListViewCell.self, forCellReuseIdentifier: MemberListViewCell.identifier)
+    }
+    
     
     private func setNavigationButton(){
         let addButton = UIBarButtonItem(barButtonSystemItem: .add, target: self, action: #selector(onTapAddBarButton))
@@ -78,9 +84,6 @@ extension MemberListViewController: UITableViewDelegate, UITableViewDataSource, 
                 return UITableViewCell()
             }
         
-        // indexPath.row 가 memberList배열의 유효한 인덱스 인지 확인하는것 인덱스 경로가 배열 범위를 벗어나는 경우 방지
-        //guard indexPath.row < memberList.count else { return UITableViewCell() }
-
         let data = memberList[(indexPath as NSIndexPath).row]
         
         cell.memberNameLabel.text = data.memberName

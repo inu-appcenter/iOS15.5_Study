@@ -1,8 +1,8 @@
 //
 //  SceneDelegate.swift
-//  TodoAPP
+//  todoAPP
 //
-//  Created by Bowon Han on 11/4/23.
+//  Created by Bowon Han on 11/8/23.
 //
 
 import UIKit
@@ -17,11 +17,26 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
+        window = UIWindow(windowScene: windowScene)
+                
+        let tabBarController = UITabBarController()
+        tabBarController.setViewControllers([TodoListViewController(),SettingViewController()], animated: true)
+        tabBarController.tabBar.backgroundColor = .systemGray5
+        tabBarController.tabBar.tintColor = UIColor(hexCode: "274e13")
         
-        let window = UIWindow(windowScene: windowScene)
-        window.rootViewController = ViewController()
-        window.makeKeyAndVisible()
-        self.window = window    }
+        if let items = tabBarController.tabBar.items {
+            items[0].selectedImage = UIImage(systemName: "checkmark.circle.fill")
+            items[0].image = UIImage(systemName: "checkmark.circle.fill")
+            items[0].title = "Tasks"
+            items[1].selectedImage = UIImage(systemName: "gear")
+            items[1].image = UIImage(systemName: "gear")
+            items[1].title = "Settings"
+        }
+        
+        window?.rootViewController = tabBarController
+        window?.makeKeyAndVisible()
+
+    }
 
     func sceneDidDisconnect(_ scene: UIScene) {
         // Called as the scene is being released by the system.

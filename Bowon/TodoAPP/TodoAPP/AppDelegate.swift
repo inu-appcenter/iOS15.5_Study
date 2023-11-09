@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  TodoAPP
+//  todoAPP
 //
-//  Created by Bowon Han on 11/4/23.
+//  Created by Bowon Han on 11/8/23.
 //
 
 import UIKit
