@@ -9,13 +9,34 @@ import SnapKit
 import UIKit
 
 final class TaskTableViewCell: UITableViewCell {
+    private var isTaskComplete: Bool = false {
+        didSet {
+            if isTaskComplete {
+                checkButton.configuration?.image = UIImage(systemName: "checkmark.circle.fill")
+                taskLabel.textColor = .lightGray
+                taskLabel.strikethrough(from: taskLabel.text, at: taskLabel.text)
+                deleteButton.configuration?.image = UIImage(systemName: "xmark.circle.fill")
+            } else {
+                checkButton.configuration?.image = UIImage(systemName: "circle")
+                taskLabel.textColor = .black
+                taskLabel.unsetStrikethrough(from: taskLabel.text, at: taskLabel.text)
+                deleteButton.configuration?.image = nil
+            }
+            
+        }
+    }
+    
     private lazy var checkButton: UIButton = {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = .systemBackground
         config.baseForegroundColor = .red
-        config.image = UIImage(systemName: "checkmark.circle.fill")
-        
+        config.image = UIImage(systemName: "circle")
         let button = UIButton(configuration: config)
+        button.addAction(UIAction { [weak self] _ in
+            if let isTaskComplete = self?.isTaskComplete {
+                self?.isTaskComplete = !isTaskComplete
+            }
+        }, for: .touchUpInside)
         return button
     }()
     
@@ -35,6 +56,10 @@ final class TaskTableViewCell: UITableViewCell {
         return button
     }()
     
+    func setupUI() {
+        self.isTaskComplete = true
+    }
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         layout()
@@ -45,7 +70,7 @@ final class TaskTableViewCell: UITableViewCell {
     }
     
     private func layout() {
-        self.addSubview(checkButton)
+        contentView.addSubview(checkButton)
         checkButton.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(10)
             make.top.equalToSuperview().offset(10)

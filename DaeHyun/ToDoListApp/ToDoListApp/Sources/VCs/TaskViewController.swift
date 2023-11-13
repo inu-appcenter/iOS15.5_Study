@@ -9,6 +9,9 @@ import SnapKit
 import UIKit
 
 class TaskViewController: UIViewController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        print("TaskViewController touched")
+    }
     private lazy var taskTableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -85,7 +88,7 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
         else {
             return UITableViewCell()
         }
-        // cell.setupUI(data: MemberManager.shared.members[indexPath.row])
+        cell.setupUI()
         return cell
     }
     
