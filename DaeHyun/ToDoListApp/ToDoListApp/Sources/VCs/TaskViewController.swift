@@ -9,9 +9,6 @@ import SnapKit
 import UIKit
 
 class TaskViewController: UIViewController {
-    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
-        print("TaskViewController touched")
-    }
     private lazy var taskTableView: UITableView = {
         let tableView = UITableView()
         tableView.delegate = self
@@ -41,6 +38,11 @@ class TaskViewController: UIViewController {
         config.image = UIImage(systemName: "plus")
         
         let button = UIButton(configuration: config)
+        button.addAction(UIAction { [weak self] _ in
+            if let content = self?.taskTextField.text {
+//                sections[0].sectionList.append(<#T##newElement: String##String#>)
+            }
+        }, for: .touchUpInside)
         return button
     }()
     
@@ -55,12 +57,15 @@ class TaskViewController: UIViewController {
         return stackView
     }()
     
-    private let sections = ["Today", "Upcoming"]
+    private let sections = [
+        TaskSection(sectionName: "Today", sectionList: ["today 1", "today 2", "today 3"]),
+        TaskSection(sectionName: "Tomorrow", sectionList: ["upcoming 1", "upcoming 2", "and so on"]),
+        TaskSection(sectionName: "Upcoming", sectionList: ["upcoming 1", "upcoming 2", "and so on"])
+    ]
 
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
-        // Do any additional setup after loading the view.
     }
     private func layout() {
         
@@ -80,7 +85,7 @@ class TaskViewController: UIViewController {
 
 extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 5
+        return sections[section].sectionList.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -97,7 +102,7 @@ extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section]
+        return sections[section].sectionName
     }
     
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {

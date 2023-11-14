@@ -17,6 +17,7 @@
 		A6B2B0192AFBA6770070A772 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = A6B2B0182AFBA6770070A772 /* SnapKit */; };
 		A6B2B01B2AFBEEB60070A772 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2B01A2AFBEEB60070A772 /* TaskTableViewCell.swift */; };
 		A6B2B0222B02A3B50070A772 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2B0212B02A3B50070A772 /* UILabel+.swift */; };
+		A6B2B0252B0356280070A772 /* TaskSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2B0242B0356280070A772 /* TaskSection.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -31,6 +32,7 @@
 		A6B2B0152AFBA0D00070A772 /* SettingViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingViewController.swift; sourceTree = "<group>"; };
 		A6B2B01A2AFBEEB60070A772 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		A6B2B0212B02A3B50070A772 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
+		A6B2B0242B0356280070A772 /* TaskSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TaskSection.swift; path = ../../../../../../../TaskSection.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,6 +87,7 @@
 		A6B2B01D2B02A3790070A772 /* Sources */ = {
 			isa = PBXGroup;
 			children = (
+				A6B2B0232B0355CC0070A772 /* Models */,
 				A6B2B0202B02A3940070A772 /* Classes */,
 				A6B2B01F2B02A38C0070A772 /* Cells */,
 				A6B2B01E2B02A3830070A772 /* VCs */,
@@ -116,6 +119,14 @@
 				A6B2B0212B02A3B50070A772 /* UILabel+.swift */,
 			);
 			path = Classes;
+			sourceTree = "<group>";
+		};
+		A6B2B0232B0355CC0070A772 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				A6B2B0242B0356280070A772 /* TaskSection.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -198,6 +209,7 @@
 				A6B2AFFE2AFB96A80070A772 /* AppDelegate.swift in Sources */,
 				A6B2B0142AFBA0B90070A772 /* TaskViewController.swift in Sources */,
 				A6B2B0122AFBA0860070A772 /* MainTabBarController.swift in Sources */,
+				A6B2B0252B0356280070A772 /* TaskSection.swift in Sources */,
 				A6B2B0222B02A3B50070A772 /* UILabel+.swift in Sources */,
 				A6B2B0002AFB96A80070A772 /* SceneDelegate.swift in Sources */,
 				A6B2B0162AFBA0D00070A772 /* SettingViewController.swift in Sources */,
