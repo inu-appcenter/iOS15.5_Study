@@ -56,8 +56,9 @@ final class TaskTableViewCell: UITableViewCell {
         return button
     }()
     
-    func setupUI() {
-        self.isTaskComplete = true
+    func setupUI(task: Task) {
+        self.taskLabel.text = task.name
+        self.isTaskComplete = task.isComplete
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

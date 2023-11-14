@@ -18,6 +18,7 @@
 		A6B2B01B2AFBEEB60070A772 /* TaskTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2B01A2AFBEEB60070A772 /* TaskTableViewCell.swift */; };
 		A6B2B0222B02A3B50070A772 /* UILabel+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2B0212B02A3B50070A772 /* UILabel+.swift */; };
 		A6B2B0252B0356280070A772 /* TaskSection.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2B0242B0356280070A772 /* TaskSection.swift */; };
+		A6B2B0272B03F4110070A772 /* TaskHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2B0262B03F4110070A772 /* TaskHeaderView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -33,6 +34,7 @@
 		A6B2B01A2AFBEEB60070A772 /* TaskTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskTableViewCell.swift; sourceTree = "<group>"; };
 		A6B2B0212B02A3B50070A772 /* UILabel+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+.swift"; sourceTree = "<group>"; };
 		A6B2B0242B0356280070A772 /* TaskSection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = TaskSection.swift; path = ../../../../../../../TaskSection.swift; sourceTree = "<group>"; };
+		A6B2B0262B03F4110070A772 /* TaskHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskHeaderView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -109,6 +111,7 @@
 			isa = PBXGroup;
 			children = (
 				A6B2B01A2AFBEEB60070A772 /* TaskTableViewCell.swift */,
+				A6B2B0262B03F4110070A772 /* TaskHeaderView.swift */,
 			);
 			path = Cells;
 			sourceTree = "<group>";
@@ -206,6 +209,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A6B2B01B2AFBEEB60070A772 /* TaskTableViewCell.swift in Sources */,
+				A6B2B0272B03F4110070A772 /* TaskHeaderView.swift in Sources */,
 				A6B2AFFE2AFB96A80070A772 /* AppDelegate.swift in Sources */,
 				A6B2B0142AFBA0B90070A772 /* TaskViewController.swift in Sources */,
 				A6B2B0122AFBA0860070A772 /* MainTabBarController.swift in Sources */,

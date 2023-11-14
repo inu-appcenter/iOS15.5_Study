@@ -11,9 +11,9 @@ import UIKit
 class TaskViewController: UIViewController {
     private lazy var taskTableView: UITableView = {
         let tableView = UITableView()
-        tableView.delegate = self
-        tableView.dataSource = self
         tableView.register(TaskTableViewCell.self, forCellReuseIdentifier: TaskTableViewCell.identifier)
+        tableView.register(TaskHeaderView.self, forHeaderFooterViewReuseIdentifier: TaskHeaderView.identifier)
+        tableView.delegate = self
         return tableView
     }()
     
@@ -57,16 +57,56 @@ class TaskViewController: UIViewController {
         return stackView
     }()
     
-    private let sections = [
-        TaskSection(sectionName: "Today", sectionList: ["today 1", "today 2", "today 3"]),
-        TaskSection(sectionName: "Tomorrow", sectionList: ["upcoming 1", "upcoming 2", "and so on"]),
-        TaskSection(sectionName: "Upcoming", sectionList: ["upcoming 1", "upcoming 2", "and so on"])
+    var todayTaskData: [Task] = [
+        Task(name: "today walking", isComplete: false),
+        Task(name: "walking", isComplete: false),
+        Task(name: "walking", isComplete: true),
+        Task(name: "walking", isComplete: false),
+        Task(name: "walking", isComplete: false),
     ]
+    
+    var upcomingTaskData: [Task] = [
+        Task(name: "upcoming walking", isComplete: false),
+        Task(name: "walking", isComplete: true),
+        Task(name: "walking", isComplete: false),
+        Task(name: "walking", isComplete: false),
+        Task(name: "walking", isComplete: false),
+    ]
+    
+    private lazy var taskTableViewDiffableDataSource: UITableViewDiffableDataSource<TaskSection, Task> = {
+        let diffableDataSource = UITableViewDiffableDataSource<TaskSection, Task>(
+            tableView: taskTableView
+        ) { tableView, _, task -> UITableViewCell? in
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier) as? TaskTableViewCell
+            else {
+                return UITableViewCell()
+            }
+            cell.setupUI(task: task)
+            return cell
+        }
+        return diffableDataSource
+    }()
+    
+    private lazy var taskTableViewSnapShot = NSDiffableDataSourceSnapshot<TaskSection, Task>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
+        setupTableView()
     }
+    
+    private func setupTableView() {
+        taskTableViewSnapShot.appendSections([.Today, .Upcoming])
+        populateSnapshot(data: todayTaskData, to: .Today)
+        populateSnapshot(data: upcomingTaskData, to: .Upcoming)
+    }
+    
+    private func populateSnapshot(data: [Task], to section: TaskSection) {
+        taskTableViewSnapShot.appendItems(data, toSection: section)
+        taskTableViewDiffableDataSource.apply(taskTableViewSnapShot)
+    }
+    
+    
     private func layout() {
         
         self.view.addSubview(appendStackView)
@@ -83,33 +123,17 @@ class TaskViewController: UIViewController {
     }
 }
 
-extension TaskViewController: UITableViewDelegate, UITableViewDataSource {
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return sections[section].sectionList.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier) as? TaskTableViewCell
-        else {
-            return UITableViewCell()
+extension TaskViewController: UITableViewDelegate {
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TaskHeaderView.identifier) as? TaskHeaderView else {
+            return UIView()
         }
-        cell.setupUI()
-        return cell
-    }
-    
-    func numberOfSections(in tableView: UITableView) -> Int {
-        return sections.count
-    }
-    
-    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        return sections[section].sectionName
-    }
-    
-    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
-        guard let header = view as? UITableViewHeaderFooterView else { return }
-        header.textLabel?.textColor = UIColor.black
-        header.textLabel?.font = UIFont.boldSystemFont(ofSize: 34)
-        header.textLabel?.frame = header.bounds
+        if section == TaskSection.Today.rawValue {
+            headerView.setTitle("Today")
+        } else {
+            headerView.setTitle("Upcoming")
+        }
+        return headerView
     }
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
