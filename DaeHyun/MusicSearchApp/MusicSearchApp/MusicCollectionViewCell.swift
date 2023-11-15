@@ -90,8 +90,7 @@ final class MusicCollectionViewCell: UICollectionViewCell {
     }
     
     func setupUI(data: MusicData) {
-        if let imageUrl = URL(string: data.artistViewUrl) {
-            print(data.artistViewUrl)
+        if let imageUrl = URL(string: data.artworkUrl100) {
             self.musicImageView.load(url: imageUrl)
         }
         self.titleLabel.text = data.trackName

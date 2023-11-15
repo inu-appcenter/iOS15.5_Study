@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "68523EC1-307B-4CF1-BC37-E1E64052650B"
+   type = "1"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "2D41B9CC-6FEA-4DF5-AB7B-B6E8DDF47532"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoListApp/Sources/VCs/TaskViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "111"
+            endingLineNumber = "111"
+            landmarkName = "fetchTaskData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "2D41B9CC-6FEA-4DF5-AB7B-B6E8DDF47532 - 67b181df41e8caa2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoListApp.TaskViewController.fetchTaskData() -&gt; ()"
+                  moduleName = "ToDoListApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daehyunlee/Desktop/2023_AppCenter/iOS15.5_Study/DaeHyun/ToDoListApp/ToDoListApp/Sources/VCs/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "92">
+               </Location>
+               <Location
+                  uuid = "2D41B9CC-6FEA-4DF5-AB7B-B6E8DDF47532 - 67b181df41e8caa2"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoListApp.TaskViewController.fetchTaskData() -&gt; ()"
+                  moduleName = "ToDoListApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daehyunlee/Desktop/2023_AppCenter/iOS15.5_Study/DaeHyun/ToDoListApp/ToDoListApp/Sources/VCs/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "110"
+                  endingLineNumber = "110"
+                  offsetFromSymbolStart = "532">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3FFC04B8-5F03-4A05-8ED8-FD565B540D8C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoListApp/Sources/VCs/TaskViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "155"
+            endingLineNumber = "155"
+            landmarkName = "saveTaskData()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3FFC04B8-5F03-4A05-8ED8-FD565B540D8C - 87ef2a8d62d83991"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoListApp.TaskViewController.saveTaskData() -&gt; ()"
+                  moduleName = "ToDoListApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daehyunlee/Desktop/2023_AppCenter/iOS15.5_Study/DaeHyun/ToDoListApp/ToDoListApp/Sources/VCs/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "84">
+               </Location>
+               <Location
+                  uuid = "3FFC04B8-5F03-4A05-8ED8-FD565B540D8C - 87ef2a8d62d83991"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoListApp.TaskViewController.saveTaskData() -&gt; ()"
+                  moduleName = "ToDoListApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daehyunlee/Desktop/2023_AppCenter/iOS15.5_Study/DaeHyun/ToDoListApp/ToDoListApp/Sources/VCs/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "320">
+               </Location>
+               <Location
+                  uuid = "3FFC04B8-5F03-4A05-8ED8-FD565B540D8C - 87ef2a8d62d83991"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoListApp.TaskViewController.saveTaskData() -&gt; ()"
+                  moduleName = "ToDoListApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daehyunlee/Desktop/2023_AppCenter/iOS15.5_Study/DaeHyun/ToDoListApp/ToDoListApp/Sources/VCs/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "155"
+                  endingLineNumber = "155"
+                  offsetFromSymbolStart = "60">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "62928FA6-991D-4AF0-BD37-32EC92E43A54"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoListApp/Sources/VCs/TaskViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "186"
+            endingLineNumber = "186"
+            landmarkName = "removeTask(forCell:)"
+            landmarkType = "9">
+            <Locations>
+               <Location
+                  uuid = "62928FA6-991D-4AF0-BD37-32EC92E43A54 - 3f1504669a135b31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoListApp.TaskViewController.removeTask(forCell: ToDoListApp.TaskTableViewCell) -&gt; ()"
+                  moduleName = "ToDoListApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daehyunlee/Desktop/2023_AppCenter/iOS15.5_Study/DaeHyun/ToDoListApp/ToDoListApp/Sources/VCs/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "488">
+               </Location>
+               <Location
+                  uuid = "62928FA6-991D-4AF0-BD37-32EC92E43A54 - 3f1504669a135b31"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "ToDoListApp.TaskViewController.removeTask(forCell: ToDoListApp.TaskTableViewCell) -&gt; ()"
+                  moduleName = "ToDoListApp"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/daehyunlee/Desktop/2023_AppCenter/iOS15.5_Study/DaeHyun/ToDoListApp/ToDoListApp/Sources/VCs/TaskViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "186"
+                  endingLineNumber = "186"
+                  offsetFromSymbolStart = "188">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5578F295-DD12-4EB2-AA5C-782CB292D84A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "ToDoListApp/Sources/VCs/TaskViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "187"
+            endingLineNumber = "187"
+            landmarkName = "removeTask(forCell:)"
+            landmarkType = "9">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>
