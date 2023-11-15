@@ -8,7 +8,13 @@
 import SnapKit
 import UIKit
 
+protocol TaskTableViewCellDelegate: AnyObject {
+    func removeTask(forCell cell: TaskTableViewCell)
+}
+
 final class TaskTableViewCell: UITableViewCell {
+    weak var delegate: TaskTableViewCellDelegate?
+    
     private var isTaskComplete: Bool = false {
         didSet {
             if isTaskComplete {
@@ -53,6 +59,11 @@ final class TaskTableViewCell: UITableViewCell {
         config.image = UIImage(systemName: "xmark.circle.fill")
         
         let button = UIButton(configuration: config)
+        button.addAction(UIAction { [weak self] _ in
+            if let self = self {
+                self.delegate?.removeTask(forCell: self)
+            }
+        }, for: .touchUpInside)
         return button
     }()
     

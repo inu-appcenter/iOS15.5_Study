@@ -28,6 +28,10 @@ class TaskViewController: UIViewController {
         let button = UIButton()
         button.setTitle("today", for: .normal)
         button.setTitleColor(.systemGray2, for: .normal)
+        button.setTitleColor(.black, for: .selected )
+        button.addAction(UIAction { [weak self] _ in
+            button.isSelected.toggle()
+        }, for: .touchUpInside)
         return button
     }()
     
@@ -39,8 +43,14 @@ class TaskViewController: UIViewController {
         
         let button = UIButton(configuration: config)
         button.addAction(UIAction { [weak self] _ in
-            if let content = self?.taskTextField.text {
-//                sections[0].sectionList.append(<#T##newElement: String##String#>)
+            if let self = self,
+               let content = self.taskTextField.text {
+                if self.todayButton.isSelected {
+                    self.todayTaskData.append(Task(name: content, isComplete: false))
+                } else {
+                    self.upcomingTaskData.append(Task(name: content, isComplete: false))
+                }
+                self.loadTableView()
             }
         }, for: .touchUpInside)
         return button
@@ -81,6 +91,7 @@ class TaskViewController: UIViewController {
             else {
                 return UITableViewCell()
             }
+            cell.delegate = self
             cell.setupUI(task: task)
             return cell
         }
@@ -92,10 +103,28 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
-        setupTableView()
+        fetchTaskData()
+        loadTableView()
     }
     
-    private func setupTableView() {
+    private func fetchTaskData() {
+        if let todayTaskData = UserDefaults.standard.object(forKey: "today") as? Data{
+            let decoder = JSONDecoder()
+            if let todayTasks = try? decoder.decode([Task].self, from: todayTaskData) {
+                self.todayTaskData = todayTasks
+            }
+        }
+        
+        if let upcomingTaskData = UserDefaults.standard.object(forKey: "upcoming") as? Data{
+            let decoder = JSONDecoder()
+            if let upcomingTasks = try? decoder.decode([Task].self, from: upcomingTaskData) {
+                self.upcomingTaskData = upcomingTasks
+            }
+        }
+    }
+    
+    private func loadTableView() {
+        taskTableViewSnapShot = NSDiffableDataSourceSnapshot<TaskSection, Task>()
         taskTableViewSnapShot.appendSections([.Today, .Upcoming])
         populateSnapshot(data: todayTaskData, to: .Today)
         populateSnapshot(data: upcomingTaskData, to: .Upcoming)
@@ -121,6 +150,17 @@ class TaskViewController: UIViewController {
             make.bottom.equalTo(appendStackView.snp.top)
         }
     }
+    
+    func saveTaskData() {
+        let encoder = JSONEncoder()
+        if let encoded = try? encoder.encode(todayTaskData) {
+            UserDefaults.standard.setValue(encoded, forKey: "today")
+        }
+        
+        if let encoded = try? encoder.encode(upcomingTaskData) {
+            UserDefaults.standard.setValue(encoded, forKey: "upcoming")
+        }
+    }
 }
 
 extension TaskViewController: UITableViewDelegate {
@@ -138,5 +178,18 @@ extension TaskViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 80
+    }
+}
+
+extension TaskViewController: TaskTableViewCellDelegate {
+    func removeTask(forCell cell: TaskTableViewCell) {
+        if let indexPath = taskTableView.indexPath(for: cell) {
+            if indexPath.section == 0 {
+                todayTaskData.remove(at: indexPath.row)
+            } else {
+                upcomingTaskData.remove(at: indexPath.row)
+            }
+            loadTableView()
+        }
     }
 }
