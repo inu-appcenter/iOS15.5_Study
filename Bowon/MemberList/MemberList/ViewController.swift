@@ -1,8 +1,8 @@
 //
 //  ViewController.swift
-//  ToDoListApp
+//  MemberList
 //
-//  Created by 이대현 on 2023/11/08.
+//  Created by Bowon Han on 10/8/23.
 //
 
 import UIKit

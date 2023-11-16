@@ -8,14 +8,41 @@
 import SnapKit
 import UIKit
 
+protocol TaskTableViewCellDelegate: AnyObject {
+    func removeTask(forCell cell: TaskTableViewCell)
+}
+
 final class TaskTableViewCell: UITableViewCell {
+    weak var delegate: TaskTableViewCellDelegate?
+    
+    private var isTaskComplete: Bool = false {
+        didSet {
+            if isTaskComplete {
+                checkButton.configuration?.image = UIImage(systemName: "checkmark.circle.fill")
+                taskLabel.textColor = .lightGray
+                taskLabel.strikethrough(from: taskLabel.text, at: taskLabel.text)
+                deleteButton.configuration?.image = UIImage(systemName: "xmark.circle.fill")
+            } else {
+                checkButton.configuration?.image = UIImage(systemName: "circle")
+                taskLabel.textColor = .black
+                taskLabel.unsetStrikethrough(from: taskLabel.text, at: taskLabel.text)
+                deleteButton.configuration?.image = nil
+            }
+            
+        }
+    }
+    
     private lazy var checkButton: UIButton = {
         var config = UIButton.Configuration.filled()
         config.baseBackgroundColor = .systemBackground
         config.baseForegroundColor = .red
-        config.image = UIImage(systemName: "checkmark.circle.fill")
-        
+        config.image = UIImage(systemName: "circle")
         let button = UIButton(configuration: config)
+        button.addAction(UIAction { [weak self] _ in
+            if let isTaskComplete = self?.isTaskComplete {
+                self?.isTaskComplete = !isTaskComplete
+            }
+        }, for: .touchUpInside)
         return button
     }()
     
@@ -32,8 +59,18 @@ final class TaskTableViewCell: UITableViewCell {
         config.image = UIImage(systemName: "xmark.circle.fill")
         
         let button = UIButton(configuration: config)
+        button.addAction(UIAction { [weak self] _ in
+            if let self = self {
+                self.delegate?.removeTask(forCell: self)
+            }
+        }, for: .touchUpInside)
         return button
     }()
+    
+    func setupUI(task: Task) {
+        self.taskLabel.text = task.name
+        self.isTaskComplete = task.isComplete
+    }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -45,7 +82,7 @@ final class TaskTableViewCell: UITableViewCell {
     }
     
     private func layout() {
-        self.addSubview(checkButton)
+        contentView.addSubview(checkButton)
         checkButton.snp.makeConstraints { make in
             make.left.equalToSuperview().offset(10)
             make.top.equalToSuperview().offset(10)
