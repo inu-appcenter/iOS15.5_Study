@@ -170,7 +170,14 @@ extension TodoListViewController : UITableViewDataSource, UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        <#code#>
+        let sectionData = saveData.dataSource[indexPath.section]
+        
+        let todoListDetail = sectionData.list[indexPath.row]
+
+        let detailVC = DetailViewController()
+        detailVC.detailViewListName.text = todoListDetail.todoNameLabel
+        
+        self.navigationController?.pushViewController(detailVC, animated: true)
     }
     
     func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
@@ -205,22 +212,22 @@ extension TodoListViewController : UITableViewDataSource, UITableViewDelegate {
 // MARK: - ButtonTappedDelegate extension
 extension TodoListViewController : ButtonTappedDelegate {
     func tapFinishButton(forCell cell: TodoTableViewCell) {
-        guard let indexPath = tableView.indexPath(for: cell) 
-            else { return }
+//        guard let indexPath = tableView.indexPath(for: cell) 
+//            else { return }
         
-        let sectionIndex = indexPath.section
-        let itemIndex = indexPath.row
+//        let sectionIndex = indexPath.section
+//        let itemIndex = indexPath.row
         
-        var successValue = saveData.dataSource[sectionIndex].list[itemIndex].success
+//        var successValue = saveData.dataSource[sectionIndex].list[itemIndex].success
         
-        if !successValue {
+        if !cell.success {
             cell.checkButton.setImage(UIImage(systemName: "checkmark.circle.fill"), for: .normal)
             
             cell.todoListLabel.textColor = .lightGray
             cell.todoListLabel.strikethroughAndChangeLineColor(from: cell.todoListLabel.text, at: cell.todoListLabel.text)
             
             cell.deleteButton.setImage(UIImage(systemName: "multiply.circle.fill"), for: .normal)
-            successValue = true
+            cell.success = true
         }
         else {
             cell.checkButton.setImage(UIImage(systemName: "circle"), for: .normal)
@@ -229,7 +236,7 @@ extension TodoListViewController : ButtonTappedDelegate {
             cell.todoListLabel.unsetStrikethrough(from: cell.todoListLabel.text, at: cell.todoListLabel.text)
             
             cell.deleteButton.setImage(nil, for: .normal)
-            successValue = false
+            cell.success = false
         }
     }
     

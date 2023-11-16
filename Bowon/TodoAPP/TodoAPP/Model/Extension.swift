@@ -57,6 +57,8 @@ extension UILabel {
                                          range: NSString(string: text).range(of: range))
         self.attributedText = attributedString
     }
+    
+    
 }
 
 

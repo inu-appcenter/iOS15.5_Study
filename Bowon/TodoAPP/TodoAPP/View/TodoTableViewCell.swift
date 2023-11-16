@@ -15,6 +15,7 @@ protocol ButtonTappedDelegate : AnyObject {
 
 final class TodoTableViewCell : UITableViewCell {
     weak var delegate : ButtonTappedDelegate?
+    var success : Bool = false
     
     lazy var deleteButton : UIButton = {
         let button = UIButton()
@@ -63,9 +64,9 @@ final class TodoTableViewCell : UITableViewCell {
         fatalError()
     }
     
-    func success() {
-        
-    }
+//    func success() {
+//        
+//    }
     
     func unset() {
         

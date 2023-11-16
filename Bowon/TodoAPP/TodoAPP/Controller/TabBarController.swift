@@ -10,7 +10,6 @@ import UIKit
 class TabBarController : UITabBarController {
     let todoListVC = UINavigationController(rootViewController: TodoListViewController())
     let settingVC = UINavigationController(rootViewController: SettingViewController())
-    let detailVC = UINavigationController(rootViewController: DetailViewController())
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -27,9 +26,9 @@ class TabBarController : UITabBarController {
     private func setupVC() {
         todoListVC.navigationBar.topItem?.titleView = NavigationBarTitleView(vcName: "To do")
         settingVC.navigationBar.topItem?.titleView = NavigationBarTitleView(vcName: "Setting")
-        detailVC.navigationBar.topItem?.titleView = NavigationBarTitleView(vcName: "Detail")
-        
+
         let setButton = UIBarButtonItem(image: UIImage(systemName: "ellipsis.circle.fill"), style:.plain, target: nil, action: #selector(tapManageSectionButton))
+        
         todoListVC.navigationBar.topItem?.rightBarButtonItem = setButton
         todoListVC.navigationBar.topItem?.rightBarButtonItem?.tintColor = .black
         

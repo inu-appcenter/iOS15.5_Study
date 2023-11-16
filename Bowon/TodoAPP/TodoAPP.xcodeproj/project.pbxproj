@@ -10,6 +10,7 @@
 		296455A12B05A68400B8A6BB /* SectionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296455A02B05A68400B8A6BB /* SectionTableViewCell.swift */; };
 		296455A32B05ABF900B8A6BB /* UserDefaults.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296455A22B05ABF900B8A6BB /* UserDefaults.swift */; };
 		296455A52B05D82D00B8A6BB /* DetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296455A42B05D82D00B8A6BB /* DetailViewController.swift */; };
+		296455A72B05FFB200B8A6BB /* DateSelectView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 296455A62B05FFB200B8A6BB /* DateSelectView.swift */; };
 		299216092AFD1BBE0087158C /* TabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299216082AFD1BBE0087158C /* TabBarController.swift */; };
 		2992160D2AFD28EF0087158C /* NavigationBarTitleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2992160C2AFD28EF0087158C /* NavigationBarTitleView.swift */; };
 		299216112AFD3F2F0087158C /* ManageSectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 299216102AFD3F2F0087158C /* ManageSectionViewController.swift */; };
@@ -32,6 +33,7 @@
 		296455A02B05A68400B8A6BB /* SectionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SectionTableViewCell.swift; sourceTree = "<group>"; };
 		296455A22B05ABF900B8A6BB /* UserDefaults.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDefaults.swift; sourceTree = "<group>"; };
 		296455A42B05D82D00B8A6BB /* DetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailViewController.swift; sourceTree = "<group>"; };
+		296455A62B05FFB200B8A6BB /* DateSelectView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelectView.swift; sourceTree = "<group>"; };
 		299216082AFD1BBE0087158C /* TabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarController.swift; sourceTree = "<group>"; };
 		2992160C2AFD28EF0087158C /* NavigationBarTitleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NavigationBarTitleView.swift; sourceTree = "<group>"; };
 		299216102AFD3F2F0087158C /* ManageSectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ManageSectionViewController.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 				29D294C42AFB1DDF00B92B99 /* TodoTableViewCell.swift */,
 				2992160C2AFD28EF0087158C /* NavigationBarTitleView.swift */,
 				296455A02B05A68400B8A6BB /* SectionTableViewCell.swift */,
+				296455A62B05FFB200B8A6BB /* DateSelectView.swift */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -207,6 +210,7 @@
 			files = (
 				29D294BC2AFB1DC900B92B99 /* TodoListViewController.swift in Sources */,
 				296455A12B05A68400B8A6BB /* SectionTableViewCell.swift in Sources */,
+				296455A72B05FFB200B8A6BB /* DateSelectView.swift in Sources */,
 				29D294A32AFB1CA700B92B99 /* AppDelegate.swift in Sources */,
 				299216092AFD1BBE0087158C /* TabBarController.swift in Sources */,
 				29D294A52AFB1CA700B92B99 /* SceneDelegate.swift in Sources */,

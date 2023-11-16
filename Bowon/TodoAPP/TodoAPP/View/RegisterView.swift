@@ -81,7 +81,7 @@ final class RegisterView : UIView {
     }
 
     private func setStackViewLayout(){
-        [registerTextField,addTodoButton,addSectionButton].forEach{
+        [registerTextField,addTodoButton,addSectionButton].forEach {
             registerStackView.addArrangedSubview($0)
         }
         registerStackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: .zero, right: 10)
@@ -95,10 +95,10 @@ final class RegisterView : UIView {
         
         addSubview(registerStackView)
 
-        registerStackView.snp.makeConstraints { (make) in
-            make.bottom.equalTo(safeAreaLayoutGuide)
-            make.leading.trailing.equalToSuperview()
-            make.height.equalTo(70)
+        registerStackView.snp.makeConstraints {
+            $0.bottom.equalTo(safeAreaLayoutGuide)
+            $0.leading.trailing.equalToSuperview()
+            $0.height.equalTo(70)
         }
     }
 }
