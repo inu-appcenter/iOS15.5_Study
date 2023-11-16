@@ -35,12 +35,26 @@ final class MusicCollectionViewCell : UICollectionViewCell {
     func requestImageURL(data: Music) {
         guard let url = URL(string: data.imageName) else { return }
         
-        Task {
-            guard
-                let data = try? Data(contentsOf: url)
-            else { return }
-            DispatchQueue.main.async{
-                self.musicImageView.image = UIImage(data: data)
+//        Task {
+//            guard
+//                let data = try? Data(contentsOf: url)
+//                    //main 스레드에서 되는듯
+//                    //그래서 네트워크끝날때까지 코드 line이 내려가지 못한듯,,
+//                    //왜이지 ,,
+//                    //task 쓰려면 ,,
+//            else { return }
+//            DispatchQueue.main.async{
+//                self.musicImageView.image = UIImage(data: data)
+//            }
+//        }
+        
+        DispatchQueue.global().async { [weak self] in
+            if let data = try? Data(contentsOf: url) {
+                if let image = UIImage(data: data) {
+                    DispatchQueue.main.async {
+                        self?.musicImageView.image = image
+                    }
+                }
             }
         }
     }

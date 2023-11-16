@@ -7,11 +7,14 @@
 
 import UIKit
 
-struct SettingSection {
+struct SettingSection : Codable {
     var list : [TodoListModel]
     let sectionName : String
 }
 
-struct TodoListModel {
-    let todoNameLabel : String?
+struct TodoListModel : Codable {
+    var success : Bool = false
+    let todoNameLabel : String
+    let startDate : Date?
+    let deadlineDate : Date?
 }

@@ -16,6 +16,8 @@ protocol PlusListButtonDelegate : AnyObject {
 final class RegisterView : UIView {
     weak var delegate : PlusListButtonDelegate?
     
+    //let firstSectionName = SaveData.shared.dataSource[].sectionName
+    
     private lazy var registerStackView : UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
@@ -39,7 +41,7 @@ final class RegisterView : UIView {
     
     lazy var addTodoButton : UIButton = {
         let button = UIButton()
-        button.setTitle("Today", for: .normal)
+        button.setTitle("today", for: .normal)
         button.tintColor = .white
         button.setContentHuggingPriority(.defaultHigh, for: .horizontal)
         button.addTarget(self, action: #selector(tabAddTodoButton), for: .touchUpInside)
@@ -71,7 +73,6 @@ final class RegisterView : UIView {
     @objc private func tabAddTodoButton(_:UIButton){
         delegate?.tabAddTodoButton(forView: self)        
         self.registerTextField.endEditing(true)
-
     }
     
     @objc private func tabAddSectionButton(_:UIButton){
@@ -80,9 +81,9 @@ final class RegisterView : UIView {
     }
 
     private func setStackViewLayout(){
-        registerStackView.addArrangedSubview(registerTextField)
-        registerStackView.addArrangedSubview(addTodoButton)
-        registerStackView.addArrangedSubview(addSectionButton)
+        [registerTextField,addTodoButton,addSectionButton].forEach{
+            registerStackView.addArrangedSubview($0)
+        }
         registerStackView.layoutMargins = UIEdgeInsets(top: 0, left: 10, bottom: .zero, right: 10)
         registerStackView.isLayoutMarginsRelativeArrangement = true
     }

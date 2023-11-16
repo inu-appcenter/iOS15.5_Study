@@ -28,7 +28,7 @@ class TodoTableViewHeaderView : UITableViewHeaderFooterView {
     var sectionNameLabel : UILabel = {
         let label = UILabel()
         label.textColor = .black
-        label.font = UIFont.systemFont(ofSize: 27, weight: .heavy)
+        label.font = UIFont.systemFont(ofSize: 20, weight: .heavy)
         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
         return label
@@ -72,9 +72,3 @@ class TodoTableViewHeaderView : UITableViewHeaderFooterView {
     }
 }
 
-// MARK: - UITableViewHeaderFooterView extension
-extension UITableViewHeaderFooterView {
-    static var identifier: String {
-        return String(describing: self)
-    }
-}
