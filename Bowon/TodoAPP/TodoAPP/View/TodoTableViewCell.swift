@@ -15,6 +15,7 @@ protocol ButtonTappedDelegate : AnyObject {
 
 final class TodoTableViewCell : UITableViewCell {
     weak var delegate : ButtonTappedDelegate?
+    var success : Bool = false
     
     lazy var deleteButton : UIButton = {
         let button = UIButton()
@@ -37,7 +38,7 @@ final class TodoTableViewCell : UITableViewCell {
         
     var todoListLabel : UILabel = {
         let label = UILabel()
-        label.font = .systemFont(ofSize: 20, weight: .light)
+        label.font = .systemFont(ofSize: 16, weight: .light)
         label.setContentHuggingPriority(.defaultLow, for: .horizontal)
         
         return label
@@ -63,6 +64,14 @@ final class TodoTableViewCell : UITableViewCell {
         fatalError()
     }
     
+//    func success() {
+//        
+//    }
+    
+    func unset() {
+        
+    }
+    
     override func prepareForReuse() {
         super.prepareForReuse()
         self.prepare(todoListLabel: nil)
@@ -82,9 +91,9 @@ final class TodoTableViewCell : UITableViewCell {
     
 // MARK: - layout
     private func stackViewLayout(){
-        stackView.addArrangedSubview(checkButton)
-        stackView.addArrangedSubview(todoListLabel)
-        stackView.addArrangedSubview(deleteButton)
+        [checkButton,todoListLabel,deleteButton].forEach{
+            stackView.addArrangedSubview($0)
+        }
     }
     
     private func setLayout(){
@@ -96,13 +105,6 @@ final class TodoTableViewCell : UITableViewCell {
             $0.leading.equalToSuperview().offset(25)
             $0.trailing.equalToSuperview().offset(-25)
         }
-    }
-}
-
-// MARK: - UITableViewCell extension
-extension UITableViewCell {
-    static var identifier: String {
-        return String(describing: self)
     }
 }
 

@@ -28,6 +28,7 @@ extension UIColor {
     }
     
     static let darkGreen : UIColor = UIColor(hexCode: "274e13")
+    static let darkYellow : UIColor = UIColor(hexCode: "CEB992")
 }
 
 // MARK: - UILabel extension
@@ -56,5 +57,23 @@ extension UILabel {
                                          range: NSString(string: text).range(of: range))
         self.attributedText = attributedString
     }
+    
+    
 }
+
+
+// MARK: - UITableViewCell extension
+extension UITableViewCell {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
+// MARK: - UITableViewHeaderFooterView extension
+extension UITableViewHeaderFooterView {
+    static var identifier: String {
+        return String(describing: self)
+    }
+}
+
 

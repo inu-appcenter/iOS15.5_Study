@@ -18,24 +18,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-                
-        let tabBarController = UITabBarController()
-        tabBarController.setViewControllers([TodoListViewController(),SettingViewController()], animated: true)
-        tabBarController.tabBar.backgroundColor = .systemGray5
-        tabBarController.tabBar.tintColor = UIColor(hexCode: "274e13")
-        
-        if let items = tabBarController.tabBar.items {
-            items[0].selectedImage = UIImage(systemName: "checkmark.circle.fill")
-            items[0].image = UIImage(systemName: "checkmark.circle.fill")
-            items[0].title = "Tasks"
-            items[1].selectedImage = UIImage(systemName: "gear")
-            items[1].image = UIImage(systemName: "gear")
-            items[1].title = "Settings"
-        }
-        
-        window?.rootViewController = tabBarController
+        let viewController = TabBarController()
+        window?.rootViewController = viewController
         window?.makeKeyAndVisible()
-
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
