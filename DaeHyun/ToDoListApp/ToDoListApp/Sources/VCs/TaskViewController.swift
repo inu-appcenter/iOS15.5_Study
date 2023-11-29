@@ -47,8 +47,10 @@ class TaskViewController: UIViewController {
                let content = self.taskTextField.text {
                 if self.todayButton.isSelected {
                     self.todayTaskData.append(Task(name: content, isComplete: false))
+                    TaskManager.shared.saveTaskData(data: self.todayTaskData, key: "today")
                 } else {
                     self.upcomingTaskData.append(Task(name: content, isComplete: false))
+                    TaskManager.shared.saveTaskData(data: self.upcomingTaskData, key: "upcoming")
                 }
                 self.loadTableView()
             }
@@ -67,21 +69,9 @@ class TaskViewController: UIViewController {
         return stackView
     }()
     
-    var todayTaskData: [Task] = [
-        Task(name: "today walking", isComplete: false),
-        Task(name: "walking", isComplete: false),
-        Task(name: "walking", isComplete: true),
-        Task(name: "walking", isComplete: false),
-        Task(name: "walking", isComplete: false),
-    ]
+    var todayTaskData: [Task] = []
     
-    var upcomingTaskData: [Task] = [
-        Task(name: "upcoming walking", isComplete: false),
-        Task(name: "walking", isComplete: true),
-        Task(name: "walking", isComplete: false),
-        Task(name: "walking", isComplete: false),
-        Task(name: "walking", isComplete: false),
-    ]
+    var upcomingTaskData: [Task] = []
     
     private lazy var taskTableViewDiffableDataSource: UITableViewDiffableDataSource<TaskSection, Task> = {
         let diffableDataSource = UITableViewDiffableDataSource<TaskSection, Task>(
@@ -108,18 +98,12 @@ class TaskViewController: UIViewController {
     }
     
     private func fetchTaskData() {
-        if let todayTaskData = UserDefaults.standard.object(forKey: "today") as? Data{
-            let decoder = JSONDecoder()
-            if let todayTasks = try? decoder.decode([Task].self, from: todayTaskData) {
-                self.todayTaskData = todayTasks
-            }
+        if let taskData = TaskManager.shared.fetchTaskData(key: "today") {
+            self.todayTaskData = taskData
         }
         
-        if let upcomingTaskData = UserDefaults.standard.object(forKey: "upcoming") as? Data{
-            let decoder = JSONDecoder()
-            if let upcomingTasks = try? decoder.decode([Task].self, from: upcomingTaskData) {
-                self.upcomingTaskData = upcomingTasks
-            }
+        if let taskData = TaskManager.shared.fetchTaskData(key: "upcoming") {
+            self.upcomingTaskData = taskData
         }
     }
     
@@ -128,11 +112,11 @@ class TaskViewController: UIViewController {
         taskTableViewSnapShot.appendSections([.Today, .Upcoming])
         populateSnapshot(data: todayTaskData, to: .Today)
         populateSnapshot(data: upcomingTaskData, to: .Upcoming)
+        taskTableViewDiffableDataSource.apply(taskTableViewSnapShot)
     }
     
     private func populateSnapshot(data: [Task], to section: TaskSection) {
         taskTableViewSnapShot.appendItems(data, toSection: section)
-        taskTableViewDiffableDataSource.apply(taskTableViewSnapShot)
     }
     
     
@@ -148,17 +132,6 @@ class TaskViewController: UIViewController {
         taskTableView.snp.makeConstraints { make in
             make.left.right.top.equalTo(view.safeAreaLayoutGuide)
             make.bottom.equalTo(appendStackView.snp.top)
-        }
-    }
-    
-    func saveTaskData() {
-        let encoder = JSONEncoder()
-        if let encoded = try? encoder.encode(todayTaskData) {
-            UserDefaults.standard.setValue(encoded, forKey: "today")
-        }
-        
-        if let encoded = try? encoder.encode(upcomingTaskData) {
-            UserDefaults.standard.setValue(encoded, forKey: "upcoming")
         }
     }
 }
@@ -186,8 +159,10 @@ extension TaskViewController: TaskTableViewCellDelegate {
         if let indexPath = taskTableView.indexPath(for: cell) {
             if indexPath.section == 0 {
                 todayTaskData.remove(at: indexPath.row)
+                TaskManager.shared.saveTaskData(data: self.todayTaskData, key: "today")
             } else {
                 upcomingTaskData.remove(at: indexPath.row)
+                TaskManager.shared.saveTaskData(data: self.upcomingTaskData, key: "upcoming")
             }
             loadTableView()
         }

@@ -28,8 +28,4 @@ class MainTabBarController: UITabBarController {
     private func layout() {
         self.tabBar.tintColor = .red
     }
-    
-    func saveTaskData() {
-        taskVC.saveTaskData()
-    }
 }
