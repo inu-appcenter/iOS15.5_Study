@@ -51,21 +51,12 @@ class TaskViewController: UIViewController {
         button.addAction(UIAction { [weak self] _ in
             if let self = self,
                let content = self.taskTextField.text {
-                let deadLine: Date
                 let section: TaskSection
                 if self.todayButton.isSelected {
-                    deadLine = Date().endOfDay
                     section = .Today
                 } else {
-                    deadLine = Date().tomorrow
                     section = .Upcoming
                 }
-                let task = Task(
-                    id: UUID().uuidString,
-                    name: content,
-                    isCompleted: false,
-                    deadLine: deadLine
-                )
                 appendTaskData(title: content, at: section, mode: .server)
                 self.loadTableView()
             }
@@ -134,6 +125,9 @@ class TaskViewController: UIViewController {
                 case let .success(response):
                     print(String(data: response.data, encoding: .utf8))
                     if let result = try? response.map([TodoResponseDTO].self) {
+                        // todo list에서 deadline이 오늘까지인지 아닌지로
+                        // 섹션 분류 후 보여줌
+                        // 과거 deadline의 todo도 today에 들어가긴 합니다
                         self.todayTaskData = result
                             .map { $0.toTask() }
                             .filter { $0.deadLine.isToday }
