@@ -10,6 +10,7 @@ import UIKit
 
 protocol TaskTableViewCellDelegate: AnyObject {
     func removeTask(forCell cell: TaskTableViewCell)
+    func setIsComplete(forCell cell: TaskTableViewCell, _ isComplete: Bool)
 }
 
 final class TaskTableViewCell: UITableViewCell {
@@ -17,6 +18,7 @@ final class TaskTableViewCell: UITableViewCell {
     
     private var isTaskComplete: Bool = false {
         didSet {
+            delegate?.setIsComplete(forCell: self, isTaskComplete)
             if isTaskComplete {
                 checkButton.configuration?.image = UIImage(systemName: "checkmark.circle.fill")
                 taskLabel.textColor = .lightGray
@@ -69,7 +71,7 @@ final class TaskTableViewCell: UITableViewCell {
     
     func setupUI(task: Task) {
         self.taskLabel.text = task.name
-        self.isTaskComplete = task.isComplete
+        self.isTaskComplete = task.isCompleted
     }
     
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {

@@ -5,8 +5,14 @@
 //  Created by 이대현 on 2023/11/08.
 //
 
+import Moya
 import SnapKit
 import UIKit
+
+enum FetchMode {
+    case server
+    case coredata
+}
 
 class TaskViewController: UIViewController {
     private lazy var taskTableView: UITableView = {
@@ -45,13 +51,13 @@ class TaskViewController: UIViewController {
         button.addAction(UIAction { [weak self] _ in
             if let self = self,
                let content = self.taskTextField.text {
+                let section: TaskSection
                 if self.todayButton.isSelected {
-                    self.todayTaskData.append(Task(name: content, isComplete: false))
-                    TaskManager.shared.saveTaskData(data: self.todayTaskData, key: "today")
+                    section = .Today
                 } else {
-                    self.upcomingTaskData.append(Task(name: content, isComplete: false))
-                    TaskManager.shared.saveTaskData(data: self.upcomingTaskData, key: "upcoming")
+                    section = .Upcoming
                 }
+                appendTaskData(title: content, at: section, mode: .server)
                 self.loadTableView()
             }
         }, for: .touchUpInside)
@@ -73,6 +79,11 @@ class TaskViewController: UIViewController {
     
     var upcomingTaskData: [Task] = []
     
+    // 서버 통신을 위한 provider
+    let provider = MoyaProvider<TodoAPI>()
+    // fetch mode
+    let fetchMode: FetchMode = .server
+    
     private lazy var taskTableViewDiffableDataSource: UITableViewDiffableDataSource<TaskSection, Task> = {
         let diffableDataSource = UITableViewDiffableDataSource<TaskSection, Task>(
             tableView: taskTableView
@@ -93,17 +104,119 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
-        fetchTaskData()
+        fetchTaskData(at: .server)
         loadTableView()
     }
     
-    private func fetchTaskData() {
-        if let taskData = TaskManager.shared.fetchTaskData(key: "today") {
-            self.todayTaskData = taskData
+    private func fetchTaskData(at mode: FetchMode = .coredata) {
+        switch mode {
+        case .coredata:
+            // 코어데이터 저장소에서 가져옴
+            if let taskData = TaskManager.shared.fetchTaskData(key: "today") {
+                self.todayTaskData = taskData
+            }
+            if let taskData = TaskManager.shared.fetchTaskData(key: "upcoming") {
+                self.upcomingTaskData = taskData
+            }
+        case .server:
+            // 서버 api 통신을 통해 가져옴
+            provider.request(.getList) { result in
+                switch result {
+                case let .success(response):
+                    print(String(data: response.data, encoding: .utf8))
+                    if let result = try? response.map([TodoResponseDTO].self) {
+                        // todo list에서 deadline이 오늘까지인지 아닌지로
+                        // 섹션 분류 후 보여줌
+                        // 과거 deadline의 todo도 today에 들어가긴 합니다
+                        self.todayTaskData = result
+                            .map { $0.toTask() }
+                            .filter { $0.deadLine.isToday }
+                        self.upcomingTaskData = result
+                            .map { $0.toTask() }
+                            .filter { !$0.deadLine.isToday }
+                        self.loadTableView()
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
         }
+    }
+    
+    private func appendTaskData(title: String,
+                                at section: TaskSection,
+                                mode: FetchMode = .coredata) {
+        // deadline
+        // today -> 그 날의 23시 59분, upcoming -> 다음 날
+        let deadLine = section == .Today ? Date().endOfDay : Date().tomorrow
         
-        if let taskData = TaskManager.shared.fetchTaskData(key: "upcoming") {
-            self.upcomingTaskData = taskData
+        switch mode {
+        case .coredata:
+            // 코어데이터 저장
+            let task = Task(
+               id: UUID().uuidString,
+               name: title,
+               isCompleted: false,
+               deadLine: deadLine
+           )
+            if section == .Today {
+                self.todayTaskData.append(task)
+                TaskManager.shared.saveTaskData(data: self.todayTaskData, key: "today")
+            } else {
+                self.upcomingTaskData.append(task)
+                TaskManager.shared.saveTaskData(data: self.upcomingTaskData, key: "upcoming")
+            }
+            self.loadTableView()
+        case .server:
+            // 서버 api 활용
+            let requestBody = TodoRequestDTO(
+                content: title,
+                deadLine: deadLine.toString,
+                title: title
+            )
+            provider.request(.createTodo(requestBody)) { result in
+                switch result {
+                case let .success(response):
+                    print(String(data: response.data, encoding: .utf8))
+                    if let result = try? response.map(TodoResponseDTO.self) {
+                        print("result: ", result)
+                        let task = Task(id: String(result.id),
+                                        name: result.title,
+                                        isCompleted: result.isCompleted,
+                                        deadLine: result.deadLineDate)
+                        if section == .Today {
+                            self.todayTaskData.append(task)
+                        } else {
+                            self.upcomingTaskData.append(task)
+                        }
+                        self.loadTableView()
+                    }
+                case let .failure(error):
+                    print(error.localizedDescription)
+                }
+            }
+        }
+    }
+    
+    private func updateIsCompleted(_ id: Int, _ completed: Bool) {
+        provider.request(.updateCheck(id, completed)) { result in
+            switch result {
+            case let .success(response):
+                print(String(data: response.data, encoding: .utf8))
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
+    private func removeTaskDate(_ id: Int) {
+        provider.request(.deleteTodo(id)) { result in
+            switch result {
+            case .success:
+                print("ID: \(id) - Todo 삭제 성공")
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
         }
     }
     
@@ -155,14 +268,40 @@ extension TaskViewController: UITableViewDelegate {
 }
 
 extension TaskViewController: TaskTableViewCellDelegate {
+    func setIsComplete(forCell cell: TaskTableViewCell, _ isComplete: Bool) {
+        if let indexPath = taskTableView.indexPath(for: cell) {
+            var task: Task
+            if indexPath.section == 0 {
+                task = todayTaskData[indexPath.row]
+            } else {
+                task = upcomingTaskData[indexPath.row]
+            }
+            task.isCompleted = isComplete
+            if let id = Int(task.id) {
+                updateIsCompleted(id, isComplete)
+            }
+        }
+    }
+    
+    
     func removeTask(forCell cell: TaskTableViewCell) {
         if let indexPath = taskTableView.indexPath(for: cell) {
+            let task: Task
             if indexPath.section == 0 {
-                todayTaskData.remove(at: indexPath.row)
-                TaskManager.shared.saveTaskData(data: self.todayTaskData, key: "today")
+                task = todayTaskData.remove(at: indexPath.row)
             } else {
-                upcomingTaskData.remove(at: indexPath.row)
-                TaskManager.shared.saveTaskData(data: self.upcomingTaskData, key: "upcoming")
+                task = upcomingTaskData.remove(at: indexPath.row)
+            }
+            if fetchMode == .coredata {
+                if indexPath.section == 0 {
+                    TaskManager.shared.saveTaskData(data: self.todayTaskData, key: "today")
+                } else {
+                    TaskManager.shared.saveTaskData(data: self.upcomingTaskData, key: "upcoming")
+                }
+            } else {
+                if let id = Int(task.id) {
+                    removeTaskDate(id)
+                }
             }
             loadTableView()
         }
