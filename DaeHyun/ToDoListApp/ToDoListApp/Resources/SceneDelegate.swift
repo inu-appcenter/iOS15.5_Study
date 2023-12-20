@@ -17,10 +17,24 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
         guard let windowScene = (scene as? UIWindowScene) else { return }
         window = UIWindow(windowScene: windowScene)
-        let viewController = MainTabBarController()
+//        let viewController = MainTabBarController()
+        let viewController = LoginViewController()
         viewController.view.backgroundColor = .systemBackground
         window?.rootViewController = viewController
         window?.makeKeyAndVisible()
+    }
+    
+    func changeRootVC(_ vc: UIViewController, animated: Bool) {
+        guard let window = self.window else { return }
+        window.rootViewController = vc
+        
+        UIView.transition(
+            with: window,
+            duration: 0.2,
+            options: [.transitionCrossDissolve],
+            animations: nil,
+            completion: nil
+        )
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {
