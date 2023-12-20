@@ -10,6 +10,10 @@ import SnapKit
 import UIKit
 
 class TaskDetailViewController: UIViewController {
+    var todoID: Int? = nil
+    // 서버 통신을 위한 provider
+    let provider = MoyaProvider<TodoAPI>()
+    
     private lazy var titleLabel: UILabel = {
         let label = UILabel()
         label.text = "제목"
@@ -59,6 +63,31 @@ class TaskDetailViewController: UIViewController {
         config.title = "수정하기"
         
         let button = UIButton(configuration: config)
+        button.addAction(UIAction { [weak self] _ in
+            if let self = self,
+               let id = self.todoID,
+               let title = self.titleTextField.text,
+               let content = self.descriptionTextView.text {
+                let deadline = self.deadlineDatePicker.date
+                
+                // todo server api
+                let todoRequest = TodoRequestDTO(
+                    content: content,
+                    deadLine: deadline.toString,
+                    title: title
+                )
+                provider.request(.updateTodo(id, todoRequest)) { [weak self] result in
+                    switch result {
+                    case let .success(response):
+                        print(String(data: response.data, encoding: .utf8))
+                        self?.backToTodoListView()
+                    case let .failure(error):
+                        print(error.localizedDescription)
+                    }
+                }
+                
+            }
+        }, for: .touchUpInside)
         return button
     }()
 
@@ -116,9 +145,10 @@ class TaskDetailViewController: UIViewController {
         }
     }
     
+    // MARK: - 초기 세팅
     func setupUI(id: Int) {
-        // 서버 통신을 위한 provider
-        let provider = MoyaProvider<TodoAPI>()
+        self.todoID = id
+
         _Concurrency.Task {
             let result = await provider.request(.getDetail(id))
             switch result {
@@ -137,5 +167,9 @@ class TaskDetailViewController: UIViewController {
                 print(error.localizedDescription)
             }
         }
+    }
+    
+    func backToTodoListView() {
+        self.navigationController?.popViewController(animated: true)
     }
 }

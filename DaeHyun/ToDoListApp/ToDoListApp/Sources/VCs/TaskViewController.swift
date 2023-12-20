@@ -92,6 +92,7 @@ class TaskViewController: UIViewController {
             else {
                 return UITableViewCell()
             }
+            cell.selectionStyle = .none
             cell.delegate = self
             cell.setupUI(task: task)
             return cell
@@ -104,6 +105,10 @@ class TaskViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchTaskData(at: .server)
         loadTableView()
     }
