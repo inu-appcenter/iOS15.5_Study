@@ -11,10 +11,13 @@ import Moya
 let USERID = 1 // 해당 id에 해당하는 유저의 todolist 불러옴
 
 enum TodoAPI {
-    case getList
+    // Todo 정보 API
+    case getDetail(_ id: Int)
     case createTodo(_ params: TodoRequestDTO)
     case updateCheck(_ id: Int, _ completed: Bool)
     case deleteTodo(_ id: Int)
+    // 유저 정보 API
+    case getList
 }
 
 extension TodoAPI: TargetType {
@@ -33,6 +36,8 @@ extension TodoAPI: TargetType {
             return "/todos/check"
         case .deleteTodo(let id):
             return "/todos/\(id)"
+        case .getDetail(let id):
+            return "/todos/\(id)"
         }
     }
     
@@ -46,6 +51,8 @@ extension TodoAPI: TargetType {
             return .put
         case .deleteTodo(_):
             return .delete
+        case .getDetail(_):
+            return .get
         }
     }
     
@@ -62,6 +69,8 @@ extension TodoAPI: TargetType {
             ]
             return .requestParameters(parameters: params, encoding: URLEncoding.queryString)
         case .deleteTodo(_):
+            return .requestPlain
+        case .getDetail(_):
             return .requestPlain
         }
     }

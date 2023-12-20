@@ -33,6 +33,7 @@ class TaskDetailViewController: UIViewController {
         let textView = UITextView()
         textView.layer.borderColor = UIColor.lightGray.cgColor
         textView.layer.borderWidth = 1
+        textView.font = .systemFont(ofSize: 16)
         textView.text = "description"
         return textView
     }()
@@ -110,8 +111,31 @@ class TaskDetailViewController: UIViewController {
         self.view.addSubview(updateButton)
         updateButton.snp.makeConstraints { make in
             make.left.right.equalTo(deadlineLabel)
-            make.top.equalTo(deadlineLabel.snp.bottom).offset(20)
+            make.top.equalTo(deadlineDatePicker.snp.bottom).offset(20)
             make.height.equalTo(50)
+        }
+    }
+    
+    func setupUI(id: Int) {
+        // 서버 통신을 위한 provider
+        let provider = MoyaProvider<TodoAPI>()
+        _Concurrency.Task {
+            let result = await provider.request(.getDetail(id))
+            switch result {
+            case let .success(response):
+                print(String(data: response.data, encoding: .utf8))
+                if let result = try? response.map(TodoResponseDTO.self) {
+                    let todoData = result.toTodo()
+                    // 여기서 UI 세팅
+                    DispatchQueue.main.async {
+                        self.titleTextField.text = todoData.name
+                        self.descriptionTextView.text = todoData.content
+                        self.deadlineDatePicker.date = todoData.deadLine
+                    }
+                }
+            case let .failure(error):
+                print(error.localizedDescription)
+            }
         }
     }
 }
