@@ -179,7 +179,6 @@ class TaskViewController: UIViewController {
                 case let .success(response):
                     print(String(data: response.data, encoding: .utf8))
                     if let result = try? response.map(TodoResponseDTO.self) {
-                        print("result: ", result)
                         let task = Task(id: String(result.id),
                                         name: result.title,
                                         isCompleted: result.isCompleted,
@@ -238,7 +237,6 @@ class TaskViewController: UIViewController {
         self.view.addSubview(appendStackView)
         appendStackView.snp.makeConstraints { make in
             make.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(70)
         }
         
         self.view.addSubview(taskTableView)
@@ -264,6 +262,13 @@ extension TaskViewController: UITableViewDelegate {
     
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 80
+    }
+    
+    // TaskDetailViewController 화면전환
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("select row")
+        let vc = TaskDetailViewController()
+        self.navigationController?.pushViewController(vc, animated: true)
     }
 }
 

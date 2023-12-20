@@ -9,6 +9,7 @@ import Foundation
 import Moya
 
 let USERID = 1 // 해당 id에 해당하는 유저의 todolist 불러옴
+
 enum TodoAPI {
     case getList
     case createTodo(_ params: TodoRequestDTO)

@@ -8,7 +8,7 @@
 import UIKit
 
 class MainTabBarController: UITabBarController {
-    let taskVC = TaskViewController()
+    let taskVC = UINavigationController(rootViewController: TaskViewController())
     let settingVC = SettingViewController()
 
     override func viewDidLoad() {

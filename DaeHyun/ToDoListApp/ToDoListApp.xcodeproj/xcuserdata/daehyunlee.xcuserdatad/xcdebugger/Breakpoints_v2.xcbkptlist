@@ -14,8 +14,8 @@
             filePath = "ToDoListApp/Sources/VCs/TaskViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "288"
-            endingLineNumber = "288"
+            startingLineNumber = "293"
+            endingLineNumber = "293"
             landmarkName = "removeTask(forCell:)"
             landmarkType = "7">
             <Locations>
@@ -62,8 +62,8 @@
             filePath = "ToDoListApp/Sources/VCs/TaskViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "290"
-            endingLineNumber = "290"
+            startingLineNumber = "295"
+            endingLineNumber = "295"
             landmarkName = "removeTask(forCell:)"
             landmarkType = "7">
          </BreakpointContent>
