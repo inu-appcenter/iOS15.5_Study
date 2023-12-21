@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 protocol PlusListButtonDelegate : AnyObject {
-    func tabAddTodoButton(forView view: RegisterView)
+    func tabAddTodoButton(forView view: RegisterView) 
 }
 
 final class RegisterView : UIView {

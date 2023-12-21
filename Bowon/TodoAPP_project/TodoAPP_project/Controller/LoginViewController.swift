@@ -26,18 +26,18 @@ class LoginViewController : UIViewController {
         return label
     }()
     
-    let idInputView : LoginInputView = {
-        let inputView = LoginInputView()
-        inputView.loginLabel.text = "email"
-        inputView.loginInputTextField.placeholder = "email을 입력하세요."
+    let idInputView : InputView = {
+        let inputView = InputView()
+        inputView.inputLabel.text = "email"
+        inputView.inputTextField.placeholder = "email을 입력하세요."
         
         return inputView
     }()
     
-    let passwordInputView : LoginInputView = {
-        let inputView = LoginInputView()
-        inputView.loginLabel.text = "password"
-        inputView.loginInputTextField.placeholder = "password를 입력하세요."
+    let passwordInputView : InputView = {
+        let inputView = InputView()
+        inputView.inputLabel.text = "password"
+        inputView.inputTextField.placeholder = "password를 입력하세요."
 
         return inputView
     }()
@@ -52,7 +52,7 @@ class LoginViewController : UIViewController {
         return stackView
     }()
     
-    private let joinButton : UIButton = {
+    private lazy var joinButton : UIButton = {
         let button = UIButton()
         button.setTitle("join", for: .normal)
         button.tintColor = .white
@@ -60,6 +60,7 @@ class LoginViewController : UIViewController {
         button.layer.cornerRadius = 10
         button.layer.borderColor = UIColor.darkYellow.cgColor
         button.layer.backgroundColor = UIColor.darkYellow.cgColor
+        button.addTarget(self, action: #selector(tabJoinButton), for: .touchUpInside)
         
         return button
     }()
@@ -81,6 +82,12 @@ class LoginViewController : UIViewController {
         let tabBarVC = TabBarController()
         tabBarVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
         self.present(tabBarVC, animated: false, completion: nil)
+    }
+    
+    @objc private func tabJoinButton(_: UIButton) {
+        let joinVC = JoinViewController()
+        joinVC.modalPresentationStyle = UIModalPresentationStyle.fullScreen
+        self.present(joinVC, animated: false, completion: nil)
     }
     
     private func setLayout() {

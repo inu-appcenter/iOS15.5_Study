@@ -9,7 +9,7 @@ import UIKit
 import SnapKit
 
 class DetailViewController : UIViewController {
-    private let saveData = Networks.shared
+    private let todoManager = TodoManager.shared
     
     var indexNumber = 0
 
@@ -66,7 +66,7 @@ class DetailViewController : UIViewController {
     
     @objc func tabSaveButton(_ :UIButton) {
         let selectedEndDate = endDateView.dataPicker.date.toString()
-        let cellData = saveData.todoDataSource[indexNumber]
+        let cellData = todoManager.todoDataSource[indexNumber]
         let id = cellData.id
         let title = cellData.title
         var description = ""
@@ -76,19 +76,19 @@ class DetailViewController : UIViewController {
             isFinishedTodo = isFinished
         }
 
-//        if let isFinishedTodo = cellData.isFinished { }
         if let descriptionTodo = cellData.description {
             description = descriptionTodo
         }
-
-        //saveData.todoDataSource[indexNumber].endDate = selectedEndDate
-        saveData.modifyTodoList(title: title, description: description, isFinished: isFinishedTodo ?? false, endDate: selectedEndDate, id: id)
+        
+        Task {
+            TodoAPI.modifyTodo(id: id, title: title, description: description, endDate: selectedEndDate, isFinished: isFinishedTodo ?? false)
+        }
         
         configureDatePicker()
     }
     
     private func configureDatePicker() {
-        if let endDate = saveData.todoDataSource[indexNumber].endDate {
+        if let endDate = todoManager.todoDataSource[indexNumber].endDate {
             endDateView.dataPicker.date = endDate
             print(endDate)
         }
