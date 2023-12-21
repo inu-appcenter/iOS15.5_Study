@@ -12,7 +12,7 @@ class DateSelectView : UIView {
     private lazy var dateStackView : UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
-        stackView.spacing = 20
+        stackView.spacing = 10
         stackView.distribution = .fill
         stackView.alignment = .center
 

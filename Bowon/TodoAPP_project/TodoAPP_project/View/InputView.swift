@@ -8,8 +8,8 @@
 import UIKit
 import SnapKit
 
-final class LoginInputView : UIView {
-    private lazy var loginInputStackView : UIStackView = {
+final class InputView : UIView {
+    private lazy var inputStackView : UIStackView = {
         let stackView = UIStackView()
         stackView.axis = .horizontal
         stackView.spacing = 5
@@ -19,7 +19,7 @@ final class LoginInputView : UIView {
         return stackView
     }()
     
-    let loginInputTextField : UITextField = {
+    let inputTextField : UITextField = {
         let textField = UITextField()
         textField.borderStyle = .roundedRect
         textField.setContentHuggingPriority(.defaultLow, for: .horizontal)
@@ -28,7 +28,7 @@ final class LoginInputView : UIView {
         return textField
     }()
     
-    let loginLabel : UILabel = {
+    let inputLabel : UILabel = {
         let label = UILabel()
         label.font = UIFont.systemFont(ofSize: 20, weight: .thin)
         label.setContentHuggingPriority(.defaultHigh, for: .horizontal)
@@ -47,21 +47,21 @@ final class LoginInputView : UIView {
     }
     
     private func setLayout() {
-        [loginLabel,loginInputTextField].forEach {
-            loginInputStackView.addArrangedSubview($0)
+        [inputLabel,inputTextField].forEach {
+            inputStackView.addArrangedSubview($0)
         }
         
-        loginLabel.snp.makeConstraints {
+        inputLabel.snp.makeConstraints {
             $0.width.equalTo(100)
         }
         
-        loginInputTextField.snp.makeConstraints {
+        inputTextField.snp.makeConstraints {
             $0.width.equalTo(200)
         }
         
-        addSubview(loginInputStackView)
+        addSubview(inputStackView)
         
-        loginInputStackView.snp.makeConstraints {
+        inputStackView.snp.makeConstraints {
             $0.top.bottom.leading.bottom.equalToSuperview()
 //            $0.height.equalTo(60)
         }
