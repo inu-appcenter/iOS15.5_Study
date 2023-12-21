@@ -69,7 +69,7 @@ final class TaskTableViewCell: UITableViewCell {
         return button
     }()
     
-    func setupUI(task: Task) {
+    func setupUI(task: Todo) {
         self.taskLabel.text = task.name
         self.isTaskComplete = task.isCompleted
     }

@@ -51,7 +51,7 @@ class TaskViewController: UIViewController {
         button.addAction(UIAction { [weak self] _ in
             if let self = self,
                let content = self.taskTextField.text {
-                let section: TaskSection
+                let section: TodoSection
                 if self.todayButton.isSelected {
                     section = .Today
                 } else {
@@ -75,23 +75,24 @@ class TaskViewController: UIViewController {
         return stackView
     }()
     
-    var todayTaskData: [Task] = []
+    var todayTaskData: [Todo] = []
     
-    var upcomingTaskData: [Task] = []
+    var upcomingTaskData: [Todo] = []
     
     // 서버 통신을 위한 provider
     let provider = MoyaProvider<TodoAPI>()
     // fetch mode
     let fetchMode: FetchMode = .server
     
-    private lazy var taskTableViewDiffableDataSource: UITableViewDiffableDataSource<TaskSection, Task> = {
-        let diffableDataSource = UITableViewDiffableDataSource<TaskSection, Task>(
+    private lazy var taskTableViewDiffableDataSource: UITableViewDiffableDataSource<TodoSection, Todo> = {
+        let diffableDataSource = UITableViewDiffableDataSource<TodoSection, Todo>(
             tableView: taskTableView
         ) { tableView, _, task -> UITableViewCell? in
             guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.identifier) as? TaskTableViewCell
             else {
                 return UITableViewCell()
             }
+            cell.selectionStyle = .none
             cell.delegate = self
             cell.setupUI(task: task)
             return cell
@@ -99,11 +100,15 @@ class TaskViewController: UIViewController {
         return diffableDataSource
     }()
     
-    private lazy var taskTableViewSnapShot = NSDiffableDataSourceSnapshot<TaskSection, Task>()
+    private lazy var taskTableViewSnapShot = NSDiffableDataSourceSnapshot<TodoSection, Todo>()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         layout()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
         fetchTaskData(at: .server)
         loadTableView()
     }
@@ -129,10 +134,10 @@ class TaskViewController: UIViewController {
                         // 섹션 분류 후 보여줌
                         // 과거 deadline의 todo도 today에 들어가긴 합니다
                         self.todayTaskData = result
-                            .map { $0.toTask() }
+                            .map { $0.toTodo() }
                             .filter { $0.deadLine.isToday }
                         self.upcomingTaskData = result
-                            .map { $0.toTask() }
+                            .map { $0.toTodo() }
                             .filter { !$0.deadLine.isToday }
                         self.loadTableView()
                     }
@@ -144,7 +149,7 @@ class TaskViewController: UIViewController {
     }
     
     private func appendTaskData(title: String,
-                                at section: TaskSection,
+                                at section: TodoSection,
                                 mode: FetchMode = .coredata) {
         // deadline
         // today -> 그 날의 23시 59분, upcoming -> 다음 날
@@ -153,7 +158,7 @@ class TaskViewController: UIViewController {
         switch mode {
         case .coredata:
             // 코어데이터 저장
-            let task = Task(
+            let task = Todo(
                id: UUID().uuidString,
                name: title,
                isCompleted: false,
@@ -170,7 +175,7 @@ class TaskViewController: UIViewController {
         case .server:
             // 서버 api 활용
             let requestBody = TodoRequestDTO(
-                content: title,
+                content: title, // content도 일단 title로 설정
                 deadLine: deadLine.toString,
                 title: title
             )
@@ -179,8 +184,7 @@ class TaskViewController: UIViewController {
                 case let .success(response):
                     print(String(data: response.data, encoding: .utf8))
                     if let result = try? response.map(TodoResponseDTO.self) {
-                        print("result: ", result)
-                        let task = Task(id: String(result.id),
+                        let task = Todo(id: String(result.id),
                                         name: result.title,
                                         isCompleted: result.isCompleted,
                                         deadLine: result.deadLineDate)
@@ -221,14 +225,14 @@ class TaskViewController: UIViewController {
     }
     
     private func loadTableView() {
-        taskTableViewSnapShot = NSDiffableDataSourceSnapshot<TaskSection, Task>()
+        taskTableViewSnapShot = NSDiffableDataSourceSnapshot<TodoSection, Todo>()
         taskTableViewSnapShot.appendSections([.Today, .Upcoming])
         populateSnapshot(data: todayTaskData, to: .Today)
         populateSnapshot(data: upcomingTaskData, to: .Upcoming)
         taskTableViewDiffableDataSource.apply(taskTableViewSnapShot)
     }
     
-    private func populateSnapshot(data: [Task], to section: TaskSection) {
+    private func populateSnapshot(data: [Todo], to section: TodoSection) {
         taskTableViewSnapShot.appendItems(data, toSection: section)
     }
     
@@ -238,7 +242,6 @@ class TaskViewController: UIViewController {
         self.view.addSubview(appendStackView)
         appendStackView.snp.makeConstraints { make in
             make.left.right.bottom.equalTo(view.safeAreaLayoutGuide)
-            make.height.equalTo(70)
         }
         
         self.view.addSubview(taskTableView)
@@ -254,7 +257,7 @@ extension TaskViewController: UITableViewDelegate {
         guard let headerView = tableView.dequeueReusableHeaderFooterView(withIdentifier: TaskHeaderView.identifier) as? TaskHeaderView else {
             return UIView()
         }
-        if section == TaskSection.Today.rawValue {
+        if section == TodoSection.Today.rawValue {
             headerView.setTitle("Today")
         } else {
             headerView.setTitle("Upcoming")
@@ -265,12 +268,28 @@ extension TaskViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, heightForHeaderInSection section: Int) -> CGFloat {
         return 80
     }
+    
+    // MARK: - TaskDetailViewController 화면전환
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        print("select row")
+        var task: Todo
+        if indexPath.section == 0 {
+            task = todayTaskData[indexPath.row]
+        } else {
+            task = upcomingTaskData[indexPath.row]
+        }
+        if let id = Int(task.id) {
+            let vc = TaskDetailViewController()
+            vc.setupUI(id: id)
+            self.navigationController?.pushViewController(vc, animated: true)
+        }
+    }
 }
 
 extension TaskViewController: TaskTableViewCellDelegate {
     func setIsComplete(forCell cell: TaskTableViewCell, _ isComplete: Bool) {
         if let indexPath = taskTableView.indexPath(for: cell) {
-            var task: Task
+            var task: Todo
             if indexPath.section == 0 {
                 task = todayTaskData[indexPath.row]
             } else {
@@ -286,7 +305,7 @@ extension TaskViewController: TaskTableViewCellDelegate {
     
     func removeTask(forCell cell: TaskTableViewCell) {
         if let indexPath = taskTableView.indexPath(for: cell) {
-            let task: Task
+            let task: Todo
             if indexPath.section == 0 {
                 task = todayTaskData.remove(at: indexPath.row)
             } else {

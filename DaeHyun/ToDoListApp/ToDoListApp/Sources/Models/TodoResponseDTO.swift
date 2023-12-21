@@ -12,12 +12,14 @@ struct TodoResponseDTO: Decodable {
     var title: String
     var isCompleted: Bool
     var deadLine: String
+    var content: String
     
-    func toTask() -> Task {
-        return Task(id: String(self.id), 
+    func toTodo() -> Todo {
+        return Todo(id: String(self.id), 
                     name: self.title,
                     isCompleted: self.isCompleted,
-                    deadLine: self.deadLineDate
+                    deadLine: self.deadLineDate,
+                    content: self.content
         )
     }
     

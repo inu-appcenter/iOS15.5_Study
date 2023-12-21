@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		A63437172B14F31000A717C2 /* Task.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63437162B14F31000A717C2 /* Task.swift */; };
+		A63437172B14F31000A717C2 /* Todo.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63437162B14F31000A717C2 /* Todo.swift */; };
 		A634371A2B17275000A717C2 /* CombineMoya in Frameworks */ = {isa = PBXBuildFile; productRef = A63437192B17275000A717C2 /* CombineMoya */; };
 		A634371C2B17275000A717C2 /* Moya in Frameworks */ = {isa = PBXBuildFile; productRef = A634371B2B17275000A717C2 /* Moya */; };
 		A634371E2B17275000A717C2 /* ReactiveMoya in Frameworks */ = {isa = PBXBuildFile; productRef = A634371D2B17275000A717C2 /* ReactiveMoya */; };
@@ -16,6 +16,9 @@
 		A63437262B1755FA00A717C2 /* TodoResponseDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63437252B1755FA00A717C2 /* TodoResponseDTO.swift */; };
 		A63437282B17945300A717C2 /* Date+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63437272B17945300A717C2 /* Date+.swift */; };
 		A634372A2B17A41400A717C2 /* TodoRequestDTO.swift in Sources */ = {isa = PBXBuildFile; fileRef = A63437292B17A41400A717C2 /* TodoRequestDTO.swift */; };
+		A6AB519C2B328BEF00C94A7F /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AB519B2B328BEF00C94A7F /* TaskDetailViewController.swift */; };
+		A6AB519E2B32D4E500C94A7F /* MoyaProvider+.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AB519D2B32D4E500C94A7F /* MoyaProvider+.swift */; };
+		A6AB51A02B32F4B500C94A7F /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6AB519F2B32F4B500C94A7F /* LoginViewController.swift */; };
 		A6B2AFFE2AFB96A80070A772 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2AFFD2AFB96A80070A772 /* AppDelegate.swift */; };
 		A6B2B0002AFB96A80070A772 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6B2AFFF2AFB96A80070A772 /* SceneDelegate.swift */; };
 		A6B2B0072AFB96A90070A772 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A6B2B0062AFB96A90070A772 /* Assets.xcassets */; };
@@ -31,11 +34,14 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		A63437162B14F31000A717C2 /* Task.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Task.swift; sourceTree = "<group>"; };
+		A63437162B14F31000A717C2 /* Todo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Todo.swift; sourceTree = "<group>"; };
 		A63437212B17276C00A717C2 /* TodoAPI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoAPI.swift; sourceTree = "<group>"; };
 		A63437252B1755FA00A717C2 /* TodoResponseDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoResponseDTO.swift; sourceTree = "<group>"; };
 		A63437272B17945300A717C2 /* Date+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+.swift"; sourceTree = "<group>"; };
 		A63437292B17A41400A717C2 /* TodoRequestDTO.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoRequestDTO.swift; sourceTree = "<group>"; };
+		A6AB519B2B328BEF00C94A7F /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
+		A6AB519D2B32D4E500C94A7F /* MoyaProvider+.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MoyaProvider+.swift"; sourceTree = "<group>"; };
+		A6AB519F2B32F4B500C94A7F /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		A6B2AFFA2AFB96A80070A772 /* ToDoListApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ToDoListApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A6B2AFFD2AFB96A80070A772 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		A6B2AFFF2AFB96A80070A772 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -121,6 +127,8 @@
 				A6B2B0112AFBA0860070A772 /* MainTabBarController.swift */,
 				A6B2B0132AFBA0B90070A772 /* TaskViewController.swift */,
 				A6B2B0152AFBA0D00070A772 /* SettingViewController.swift */,
+				A6AB519B2B328BEF00C94A7F /* TaskDetailViewController.swift */,
+				A6AB519F2B32F4B500C94A7F /* LoginViewController.swift */,
 			);
 			path = VCs;
 			sourceTree = "<group>";
@@ -139,6 +147,7 @@
 			children = (
 				A63437272B17945300A717C2 /* Date+.swift */,
 				A6B2B0212B02A3B50070A772 /* UILabel+.swift */,
+				A6AB519D2B32D4E500C94A7F /* MoyaProvider+.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -147,7 +156,7 @@
 			isa = PBXGroup;
 			children = (
 				A6E1A2FB2B0F1D170014D9A3 /* TaskManager.swift */,
-				A63437162B14F31000A717C2 /* Task.swift */,
+				A63437162B14F31000A717C2 /* Todo.swift */,
 				A63437212B17276C00A717C2 /* TodoAPI.swift */,
 				A63437252B1755FA00A717C2 /* TodoResponseDTO.swift */,
 				A63437292B17A41400A717C2 /* TodoRequestDTO.swift */,
@@ -242,11 +251,14 @@
 				A6E1A2FC2B0F1D170014D9A3 /* TaskManager.swift in Sources */,
 				A6B2AFFE2AFB96A80070A772 /* AppDelegate.swift in Sources */,
 				A634372A2B17A41400A717C2 /* TodoRequestDTO.swift in Sources */,
-				A63437172B14F31000A717C2 /* Task.swift in Sources */,
+				A63437172B14F31000A717C2 /* Todo.swift in Sources */,
 				A6B2B0142AFBA0B90070A772 /* TaskViewController.swift in Sources */,
 				A6B2B0122AFBA0860070A772 /* MainTabBarController.swift in Sources */,
+				A6AB519C2B328BEF00C94A7F /* TaskDetailViewController.swift in Sources */,
+				A6AB519E2B32D4E500C94A7F /* MoyaProvider+.swift in Sources */,
 				A6B2B0222B02A3B50070A772 /* UILabel+.swift in Sources */,
 				A63437222B17276C00A717C2 /* TodoAPI.swift in Sources */,
+				A6AB51A02B32F4B500C94A7F /* LoginViewController.swift in Sources */,
 				A63437282B17945300A717C2 /* Date+.swift in Sources */,
 				A6B2B0002AFB96A80070A772 /* SceneDelegate.swift in Sources */,
 				A6B2B0162AFBA0D00070A772 /* SettingViewController.swift in Sources */,
@@ -317,7 +329,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
 				MTL_FAST_MATH = YES;
 				ONLY_ACTIVE_ARCH = YES;
@@ -371,7 +383,7 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				MTL_FAST_MATH = YES;
 				SDKROOT = iphoneos;
@@ -388,6 +400,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39R4Y76837;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToDoListApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -415,6 +428,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 39R4Y76837;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = ToDoListApp/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
